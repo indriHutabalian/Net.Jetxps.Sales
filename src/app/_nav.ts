@@ -46,5 +46,5 @@ export const navItems = [
     name: 'Engagement Runsheet',
     url: '/dashboard',
     icon: ''
-  },
+  }
 ];

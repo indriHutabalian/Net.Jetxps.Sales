@@ -39,6 +39,10 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ProspectClientModule } from './views/prospect-client/prospect-client.module';
+import { SharedModule } from './views/shared/shared.module';
+import { ProspectClientService } from './services';
+import { AuthGuard } from './guards';
 
 @NgModule({
   imports: [
@@ -52,7 +56,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+
+    SharedModule,
+    ProspectClientModule
   ],
   declarations: [
     AppComponent,
@@ -62,10 +69,14 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+    AuthGuard,
+    ProspectClientService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
