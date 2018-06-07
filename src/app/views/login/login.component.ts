@@ -13,8 +13,10 @@ export class LoginComponent implements OnInit {
   ) {
   }
 
-  private user: any = {
-    username: '',
+  private message: string;
+
+  user: any = {
+    username: ''
     password: ''
   };
 
@@ -22,9 +24,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(user) {
+    this.message = `Logging in`;
+
     this.authService.login(user)
-      .subscribe(data => {
+      .then(result => {
+        this.message = `Fetching user profile`;
+        return this.authService.getProfile();
+      }, error => {
+        this.message = ``;
+      })
+      .then(result => {
+        this.message = `Please wait`;
+        // return this.authService.getBranches();
+
         this.router.navigate(['/dashboard']);
-      });
+      }, error => {
+        this.message = ``;
+      });;
   }
+  
 }

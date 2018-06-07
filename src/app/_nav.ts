@@ -3,10 +3,10 @@ export const navItems = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
+    // badge: {
+    //   variant: 'info',
+    //   text: 'NEW'
+    // }
   },
   {
     title: true,
@@ -31,20 +31,7 @@ export const navItems = [
   },
   {
     name: 'Prospect Clients',
-    url: '/dashboard',
+    url: '/prospect-clients',
     icon: 'icon-people'
-  },
-  {
-    title: true,
-    name: 'Report'
-  },
-  {
-    title: true,
-    name: 'History'
-  },
-  {
-    name: 'Engagement Runsheet',
-    url: '/dashboard',
-    icon: ''
   }
 ];

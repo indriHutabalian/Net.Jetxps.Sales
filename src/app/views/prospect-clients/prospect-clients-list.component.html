@@ -1,0 +1,90 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <h5>Prospect Clients
+
+      </h5>
+    </div>
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-4 col-xl-3 ml-auto">
+              <form (submit)="search()">
+                <div class="form-group m-0">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="keyword" [(ngModel)]="pageQuery.keyword" autocomplete="off" placeholder="Search" />
+                    <span class="input-group-append">
+                      <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 175px;" class="text-center">Code</th>
+                  <th>Client</th>
+                  <th style="width: 100px;" class="text-center">Complete</th>
+                  <th style="width: 100px;" class="text-center">Success</th>
+                  <th style="width: 150px;" class="text-center">
+                    <button class="btn btn-sm btn-primary" [routerLink]="['/news/upsert']">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let client of prospectClients">
+                  <td class="text-center">
+                    {{ client.code }}
+                  </td>
+                  <td>
+                    {{ client.name }}
+                    <br/> {{ client.address }}
+                    <br/> {{ client.phone }}
+                  </td>
+                  <td class="text-center">
+                    <i class="fa" [ngClass]="{
+                      'fa-check text-success': client.isSuccess,
+                      'fa-times text-danger': !client.isSuccess
+                      }"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="fa" [ngClass]="{
+                      'fa-check text-success': client.isCompleted,
+                      'fa-times text-danger': !client.isCompleted
+                      }"></i>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-link">
+                      <i class="fa fa-info-circle"></i>
+                    </button>
+                    <button class="btn btn-link">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-link" (click)="delete(client)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer">
+          <pagination class="pull-right" [(ngModel)]="pageQuery.page" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+          </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

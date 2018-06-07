@@ -39,10 +39,15 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ProspectClientModule } from './views/prospect-client/prospect-client.module';
 import { SharedModule } from './views/shared/shared.module';
-import { ProspectClientService } from './services';
+import {
+  AuthService
+  , ProspectClientService
+} from './services';
 import { AuthGuard } from './guards';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './app.interceptors';
+import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 
 @NgModule({
   imports: [
@@ -59,7 +64,7 @@ import { AuthGuard } from './guards';
     ChartsModule,
 
     SharedModule,
-    ProspectClientModule
+    ProspectClientsModule
   ],
   declarations: [
     AppComponent,
@@ -71,10 +76,16 @@ import { AuthGuard } from './guards';
   ],
   providers: [
     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
     AuthGuard,
+    AuthService,
     ProspectClientService
   ],
   bootstrap: [AppComponent]
