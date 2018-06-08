@@ -1,9 +1,7 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-12">
-      <h5>Prospect Clients
-
-      </h5>
+      <h5>Prospect Clients</h5>
     </div>
     <div class="col-12">
       <div class="card">
@@ -35,7 +33,7 @@
                   <th style="width: 100px;" class="text-center">Complete</th>
                   <th style="width: 100px;" class="text-center">Success</th>
                   <th style="width: 150px;" class="text-center">
-                    <button class="btn btn-sm btn-primary" [routerLink]="['/news/upsert']">
+                    <button class="btn btn-sm btn-primary" (click)="openModalUpsert()">
                       <i class="fa fa-plus"></i>
                     </button>
                   </th>
@@ -64,13 +62,13 @@
                       }"></i>
                   </td>
                   <td class="text-center">
-                    <button class="btn btn-link">
+                    <button class="btn btn-link" type="button" (click)="openModalDetail(client.code)">
                       <i class="fa fa-info-circle"></i>
                     </button>
-                    <button class="btn btn-link">
+                    <button class="btn btn-link" type="button" (click)="openModalUpsert(client.code)">
                       <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-link" (click)="delete(client)">
+                    <button class="btn btn-link" type="button" (click)="delete(client)">
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>
@@ -80,9 +78,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <pagination class="pull-right" [(ngModel)]="pageQuery.page" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-
-          </pagination>
+          <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   private message: string;
 
   user: any = {
-    username: ''
+    username: '',
     password: ''
   };
 

@@ -4,8 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
   BsDatepickerModule,
-  PaginationModule
+  PaginationModule,
+  ModalModule
 } from 'ngx-bootstrap';
+
 
 @NgModule({
   imports: [
@@ -13,7 +15,8 @@ import {
     FormsModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [],
   providers: [],
@@ -22,7 +25,8 @@ import {
     FormsModule,
     HttpClientModule,
     BsDatepickerModule,
-    PaginationModule
+    PaginationModule,
+    ModalModule
   ]
 })
 export class SharedModule { }

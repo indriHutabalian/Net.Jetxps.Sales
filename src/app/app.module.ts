@@ -48,7 +48,6 @@ import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.interceptors';
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
-
 @NgModule({
   imports: [
     BrowserModule,

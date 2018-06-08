@@ -1,6 +1,6 @@
-export class ApiResponse<T> {
-    T;
-}
+// export class ApiResponse<T> {
+//     T: any;
+// }
 
 export class ApiResponseQuery<T> {
     query: PageQuery;

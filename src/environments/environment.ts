@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
 
-  apiAuthUrl: `http://localhost:50659`,
+  apiAuthUrl: `http://dev-jet-api-auth.azurewebsites.net`,
   apiUrl: `http://localhost:50663`
 };

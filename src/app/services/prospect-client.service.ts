@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
-  ApiResponse,
+  // ApiResponse,
   ApiResponseQuery,
   PageQuery,
   ProspectClient,
@@ -23,7 +23,19 @@ export class ProspectClientService {
     return this.httpClient.get<ApiResponseQuery<ProspectClient>>(`${environment.apiUrl}/v1/prospect-clients?branchCode=TGR`, { params: pageQuery });
   }
 
-  get(code: string): Observable<ApiResponse<ProspectClient>>{
-    return this.httpClient.get<ApiResponse<ProspectClient>>(`${environment.apiUrl}/v1/prospect-clients/${code}`);
+  get(code: string): Observable<ProspectClient> {
+    return this.httpClient.get<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`);
+  }
+
+  create(data: ProspectClient): Observable<ProspectClient> {
+    return this.httpClient.post<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients`, { data: data });
+  }
+
+  update(code: string, data: ProspectClient): Observable<ProspectClient> {
+    return this.httpClient.put<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`, { data: data });
+  }
+
+  delete(code: string) {
+    return this.httpClient.delete<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`);
   }
 }
