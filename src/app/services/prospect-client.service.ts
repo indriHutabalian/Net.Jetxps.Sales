@@ -8,7 +8,6 @@ import {
   PageQuery,
   ProspectClient,
 } from '../models';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +27,22 @@ export class ProspectClientService {
   }
 
   create(data: ProspectClient): Observable<ProspectClient> {
-    return this.httpClient.post<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients`, { data: data });
+    return this.httpClient.post<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients`, data);
   }
 
   update(code: string, data: ProspectClient): Observable<ProspectClient> {
-    return this.httpClient.put<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`, { data: data });
+    return this.httpClient.put<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`, data);
   }
 
   delete(code: string) {
     return this.httpClient.delete<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}`);
+  }
+
+  setOpen(code: string): Observable<ProspectClient> {
+    return this.httpClient.post<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}/open`, {});
+  }
+
+  setClose(code: string): Observable<ProspectClient> {
+    return this.httpClient.post<ProspectClient>(`${environment.apiUrl}/v1/prospect-clients/${code}/close`, {});
   }
 }

@@ -42,6 +42,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SharedModule } from './views/shared/shared.module';
 import {
   AuthService
+  , BranchService
   , ProspectClientService
 } from './services';
 import { AuthGuard } from './guards';
@@ -85,6 +86,7 @@ import { ProspectClientsModule } from './views/prospect-clients/prospect-clients
     },
     AuthGuard,
     AuthService,
+    BranchService,
     ProspectClientService
   ],
   bootstrap: [AppComponent]

@@ -1,59 +1,68 @@
 <form (submit)="save(data)">
-<div class="modal-header">
-  <h4 class="modal-title pull-left">
-    {{ data.code ? 'Update' : 'Add' }}
-  </h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <div class="row">
-    <div class="col-12">
-      <div class="form-group">
-        <label>Code</label>
-        <input type="text" name="code" class="form-control" [(ngModel)]="data.code" />
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      {{ data.id ? 'Update' : 'Add' }}
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label>Code</label>
+          <input type="text" name="code" class="form-control" [(ngModel)]="data.code" [disabled]="data.id" />
+          <span class="help-block">{{ getErrorValue('code') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" [(ngModel)]="data.name" />
+      <div class="col-12">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" [(ngModel)]="data.name" />
+          <span class="help-block">{{ getErrorValue('name') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>E-mail</label>
-        <input type="text" name="email" class="form-control" [(ngModel)]="data.email" />
+      <div class="col-12">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="text" name="email" class="form-control" [(ngModel)]="data.email" />
+          <span class="help-block">{{ getErrorValue('email') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>Phone</label>
-        <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" />
+      <div class="col-12">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" />
+          <span class="help-block">{{ getErrorValue('phone') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>Address</label>
-        <textarea name="address" cols="30" rows="10" class="form-control" [(ngModel)]="data.address"></textarea>
+      <div class="col-12">
+        <div class="form-group">
+          <label>Address</label>
+          <textarea name="address" cols="30" rows="10" class="form-control" [(ngModel)]="data.address"></textarea>
+          <span class="help-block">{{ getErrorValue('address') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>Zip Code</label>
-        <input type="text" name="zipCode" class="form-control" [(ngModel)]="data.zipCode" />
+      <div class="col-12">
+        <div class="form-group">
+          <label>Zip Code</label>
+          <input type="text" name="zipCode" class="form-control" [(ngModel)]="data.zipCode" />
+          <span class="help-block">{{ getErrorValue('zipCode') }}</span>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label>Branch</label>
-        <select name="branch" class="form-control"></select>
+      <div class="col-12">
+        <div class="form-group">
+          <label>Branch</label>
+          <select name="branch" class="form-control" [(ngModel)]="data.engagementBranchCode">
+            <option *ngFor="let branch of branches" [ngValue]="branch.code">{{ branch.code }} - {{ branch.name }}</option>
+          </select>
+          <span class="help-block">{{ getErrorValue('engagementBranchCode') }}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="modal-footer">
-  <button type="submit" class="btn btn-primary">Save</button>
-</div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
 </form>

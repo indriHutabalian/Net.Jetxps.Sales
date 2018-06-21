@@ -21,11 +21,15 @@ export class AuthService {
   public isAuthenticated() {
     let accessToken: AuthToken = this.getCurrentAccessToken();
     let userProfile: UserProfile = this.getCurrentUserProfile();
-    
+    // debugger
     return (accessToken && userProfile);
   }
 
   private setAccessToken(val) {
+    let currentDate = new Date();
+    
+    val.expired_at = currentDate.setSeconds(currentDate.getSeconds() + val.expires_in);
+
     localStorage.setItem('accessToken', JSON.stringify(val));
   }
 

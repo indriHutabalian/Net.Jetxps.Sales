@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import {
   BsDatepickerModule,
   PaginationModule,
-  ModalModule
+  ModalModule,
+  BsDropdownModule
 } from 'ngx-bootstrap';
 
 
@@ -14,6 +15,7 @@ import {
     CommonModule,
     FormsModule,
     HttpClientModule,
+    BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot()
@@ -24,6 +26,7 @@ import {
     CommonModule,
     FormsModule,
     HttpClientModule,
+    BsDropdownModule,
     BsDatepickerModule,
     PaginationModule,
     ModalModule

@@ -12,7 +12,7 @@ export class PageQuery {
         this.asc = true;
         this.count = 0;
         this.keyword = '';
-        this.orderBy = 'UpdatedDate';
+        this.orderBy = 'CreatedDate';
         this.sort = 'DESC';
         this.page = 1;
         this.size = 15;

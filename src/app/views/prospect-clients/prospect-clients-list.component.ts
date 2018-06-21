@@ -20,7 +20,7 @@ export class ProspectClientsListComponent implements OnInit {
   private bsModalRef: BsModalRef;
 
   private prospectClients: ProspectClient[];
-  private pageQuery: PageQuery = new PageQuery;
+  private pageQuery: PageQuery = new PageQuery();
 
   ngOnInit() {
     this.getAll(this.pageQuery);
@@ -37,7 +37,10 @@ export class ProspectClientsListComponent implements OnInit {
 
   delete(data) {
     if (confirm(`Are you sure want to delete this data?`)) {
-
+      this.prospectClientService.delete(data.code)
+        .subscribe(data => {
+          this.getAll(this.pageQuery);
+        });
     }
   }
 
@@ -53,22 +56,27 @@ export class ProspectClientsListComponent implements OnInit {
     this.getAll(this.pageQuery);
   }
 
-  openModalUpsert(code: string) {
+  openModal(isUpsert: boolean, code: string) {
     this.bsModalService.onHide
       .subscribe(e => {
         if (e == 'reload')
           this.getAll(this.pageQuery);
       });
-    this.bsModalRef = this.bsModalService.show(ProspectClientsUpsertComponent, { initialState: { code: code } });
+
+    this.bsModalRef = this.bsModalService.show(isUpsert ? ProspectClientsUpsertComponent : ProspectClientsDetailComponent, { initialState: { code: code } });
   }
 
-  openModalDetail(code: string) {
-    this.bsModalService.onHide
-      .subscribe(e => {
-        if (e == 'reload')
-          this.getAll(this.pageQuery);
-      });
-    this.bsModalRef = this.bsModalService.show(ProspectClientsDetailComponent, { initialState: { code: code } });
+  setOpen(code: string) {
+    this.prospectClientService.setOpen(code)
+      .subscribe(res => {
+        this.getAll(this.pageQuery);
+      })
   }
 
+  setClose(code: string) {
+    this.prospectClientService.setClose(code)
+      .subscribe(res => {
+        this.getAll(this.pageQuery);
+      })
+  }
 }
