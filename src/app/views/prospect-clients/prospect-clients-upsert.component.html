@@ -51,15 +51,6 @@
           <span class="help-block">{{ getErrorValue('zipCode') }}</span>
         </div>
       </div>
-      <div class="col-12">
-        <div class="form-group">
-          <label>Branch</label>
-          <select name="branch" class="form-control" [(ngModel)]="data.engagementBranchCode">
-            <option *ngFor="let branch of branches" [ngValue]="branch.code">{{ branch.code }} - {{ branch.name }}</option>
-          </select>
-          <span class="help-block">{{ getErrorValue('engagementBranchCode') }}</span>
-        </div>
-      </div>
     </div>
   </div>
   <div class="modal-footer">

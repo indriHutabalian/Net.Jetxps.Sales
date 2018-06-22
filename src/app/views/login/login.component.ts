@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
+import { Branch } from '../../models';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   private message: string;
+  private accessibleBranches: any;
 
   user: any = {
     username: '',
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.authService.logout();
   }
 
   login(user) {
@@ -35,12 +38,24 @@ export class LoginComponent implements OnInit {
       })
       .then(result => {
         this.message = `Please wait`;
-        // return this.authService.getBranches();
-
-        this.router.navigate(['/dashboard']);
+        return this.authService.getAccessBranches();
       }, error => {
-        this.message = ``;
-      });;
+        this.message = `Retrieving accessible branches`;
+      })
+      .then(result => {
+        this.message = '';
+
+        this.accessibleBranches = result;
+      }, error => {
+        this.message = '';
+      });
   }
-  
+
+  selectCurrentBranch(branch) {
+    this.authService.setCurrentBranch(branch);
+
+    this.router.navigate(['/dashboard']);
+
+  }
+
 }

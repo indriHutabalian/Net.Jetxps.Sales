@@ -41,14 +41,17 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SharedModule } from './views/shared/shared.module';
 import {
-  AuthService
-  , BranchService
-  , ProspectClientService
+  AuthService,
+  BranchService,
+  ProspectClientService,
+  EngagementRunsheetService
 } from './services';
 import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.interceptors';
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
+import { EngagementRunsheetsModule } from './views/engagement-runsheets/engagement-runsheets.module';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { ProspectClientsModule } from './views/prospect-clients/prospect-clients
     ChartsModule,
 
     SharedModule,
-    ProspectClientsModule
+    ProspectClientsModule,
+    EngagementRunsheetsModule
   ],
   declarations: [
     AppComponent,
@@ -87,7 +91,8 @@ import { ProspectClientsModule } from './views/prospect-clients/prospect-clients
     AuthGuard,
     AuthService,
     BranchService,
-    ProspectClientService
+    ProspectClientService,
+    EngagementRunsheetService
   ],
   bootstrap: [AppComponent]
 })

@@ -90,6 +90,10 @@ export const routes: Routes = [
       {
         path: 'prospect-clients',
         loadChildren: './views/prospect-clients/prospect-clients.module#ProspectClientsModule'
+      },
+      {
+        path: 'engagement-runsheets',
+        loadChildren: './views/engagement-runsheets/engagement-runsheets.module#EngagementRunsheetsModule'
       }
     ]
   }

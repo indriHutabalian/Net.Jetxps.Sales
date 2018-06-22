@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ProspectClientService, BranchService } from '../../services';
+import { ProspectClientService, BranchService, AuthService } from '../../services';
 import { ProspectClient, Branch, PageQuery } from '../../models';
 
 @Component({
@@ -12,30 +12,24 @@ export class ProspectClientsUpsertComponent implements OnInit {
   constructor(
     private bsModalRef: BsModalRef,
     private bsModalService: BsModalService,
-    private prospectClientService: ProspectClientService,
-    private branchService: BranchService
+    private authService: AuthService,
+    private prospectClientService: ProspectClientService
   ) { }
 
   @Input() code: string;
+
   private data: ProspectClient = new ProspectClient();
-  private branches: Branch[];
+
+  private currentBranch: Branch = this.authService.getCurrentBranch();
+
   private errors;
 
   ngOnInit() {
-    this.getBanks();
-
     if (this.code)
       this.prospectClientService.get(this.code)
         .subscribe(data => {
           this.data = data;
         });
-  }
-
-  getBanks() {
-    this.branchService.getAll({ size: -1, orderBy: 'Name' })
-      .subscribe(data => {
-        this.branches = data.result;
-      });
   }
 
   close() {
@@ -44,6 +38,8 @@ export class ProspectClientsUpsertComponent implements OnInit {
   }
 
   save(data) {
+    data.engagementBranchCode = this.currentBranch.code;
+
     let save$ = (data.id) ?
       this.prospectClientService.update(data.code, data)
       : this.prospectClientService.create(data);
@@ -59,7 +55,7 @@ export class ProspectClientsUpsertComponent implements OnInit {
 
   getErrorValue(propName: string) {
     if (!this.errors)
-    return '';
+      return '';
 
     return this.errors[propName];
   }

@@ -19,7 +19,7 @@ export const navItems = [
     children: [
       {
         name: 'Create',
-        url: '/dashboard',
+        url: '/engagement-runsheets/create',
         icon: ''
       },
       {

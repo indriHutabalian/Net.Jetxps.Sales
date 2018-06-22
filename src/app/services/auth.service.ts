@@ -7,7 +7,11 @@ import { Observable } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { AuthToken, UserProfile } from '../models';
+import {
+  AuthToken
+  , UserProfile
+  , Branch
+} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +31,7 @@ export class AuthService {
 
   private setAccessToken(val) {
     let currentDate = new Date();
-    
+
     val.expired_at = currentDate.setSeconds(currentDate.getSeconds() + val.expires_in);
 
     localStorage.setItem('accessToken', JSON.stringify(val));
@@ -43,6 +47,22 @@ export class AuthService {
 
   public getCurrentUserProfile(): UserProfile {
     return JSON.parse(localStorage.getItem('userProfile'));
+  }
+
+  private setAccessibleBranches(val) {
+    localStorage.setItem('accessBranches', JSON.stringify(val));
+  }
+
+  public getAccessibleBranches(): Branch[] {
+    return JSON.parse(localStorage.getItem('accessBranches'));
+  }
+
+  public setCurrentBranch(val) {
+    localStorage.setItem('currentBranch', JSON.stringify(val));
+  }
+
+  public getCurrentBranch(): Branch {
+    return JSON.parse(localStorage.getItem('currentBranch'));
   }
 
   public login(user): Promise<AuthToken> {
@@ -73,8 +93,21 @@ export class AuthService {
       .toPromise();
   }
 
+  public getAccessBranches(): Promise<Branch[]> {
+    return this.httpClient.get<Branch[]>(`${environment.apiAuthUrl}/me/access/branches`)
+      .pipe(
+        tap(data => {
+          this.setAccessibleBranches(data);
+
+          return data;
+        })
+      )
+      .toPromise();
+  }
+
   public logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userProfile');
+    localStorage.removeItem('accessBranches');
   }
 }

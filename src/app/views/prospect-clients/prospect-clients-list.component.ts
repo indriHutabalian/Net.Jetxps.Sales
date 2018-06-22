@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProspectClientService } from '../../services';
+import { AuthService, ProspectClientService } from '../../services';
 import { PageQuery, ProspectClient } from '../../models';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ProspectClientsUpsertComponent } from './prospect-clients-upsert.component';
@@ -14,6 +14,7 @@ export class ProspectClientsListComponent implements OnInit {
 
   constructor(
     private bsModalService: BsModalService,
+    private authService: AuthService,
     private prospectClientService: ProspectClientService
   ) { }
 
@@ -27,7 +28,7 @@ export class ProspectClientsListComponent implements OnInit {
   }
 
   getAll(pageQuery: PageQuery) {
-    this.prospectClientService.getAll(pageQuery)
+    this.prospectClientService.getAll(this.authService.getCurrentBranch().code, pageQuery)
       .subscribe(data => {
         this.prospectClients = data.result;
         this.pageQuery = data.query;

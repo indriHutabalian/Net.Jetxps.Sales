@@ -18,8 +18,8 @@ export class ProspectClientService {
     private httpClient: HttpClient
   ) { }
 
-  getAll(pageQuery: any): Observable<ApiResponseQuery<ProspectClient>> {
-    return this.httpClient.get<ApiResponseQuery<ProspectClient>>(`${environment.apiUrl}/v1/prospect-clients?branchCode=TGR`, { params: pageQuery });
+  getAll(branchCode: string, pageQuery: any): Observable<ApiResponseQuery<ProspectClient>> {
+    return this.httpClient.get<ApiResponseQuery<ProspectClient>>(`${environment.apiUrl}/v1/prospect-clients?branchCode=${branchCode}`, { params: pageQuery });
   }
 
   get(code: string): Observable<ProspectClient> {

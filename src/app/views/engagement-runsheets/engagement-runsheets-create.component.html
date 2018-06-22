@@ -1,0 +1,38 @@
+<form (submit)="save(data)">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-12">
+        <h5>Create Engagement Runsheet</h5>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Sales</label>
+                  <input type="text" name="salesEmail" class="form-control" [(ngModel)]="salesEmail" />
+                  <span class="help-block">{{ getErrorValue('salesCode') }}</span>
+                </div>
+
+                <div class="form-group">
+                  <label>Note</label>
+                  <textarea name="note" cols="30" rows="10" class="form-control" [(ngModel)]="data.note"></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <h6>Clients</h6>
+                <hr/>
+
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
