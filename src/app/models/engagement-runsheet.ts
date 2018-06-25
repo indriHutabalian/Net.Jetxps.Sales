@@ -1,4 +1,9 @@
+import { ProspectClient } from ".";
+
 export class EngagementRunsheet {
+    constructor() {
+        this.engagementRunsheetItems = []
+    }
     id: number;
     code: string;
     branchCode: string;
@@ -13,6 +18,15 @@ export class EngagementRunsheet {
 }
 
 export class EngagementRunsheetItem {
+    constructor(client: ProspectClient) {
+        this.prospectClientCode = client.code;
+        this.prospectClientName = client.name;
+        this.prospectClientEmail = client.email;
+        this.prospectClientAddress = client.address;
+        this.prospectClientZipCode = client.zipCode;
+        this.prospectClientPhone = client.phone;
+    }
+
     id: number;
     engagementRunsheetCode: string;
     prospectClientCode: string;

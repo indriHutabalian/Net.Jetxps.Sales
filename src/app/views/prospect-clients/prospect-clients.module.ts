@@ -5,6 +5,7 @@ import { ProspectClientsRoutingModule } from './prospect-clients-routing.module'
 import { ProspectClientsListComponent } from './prospect-clients-list.component';
 import { ProspectClientsUpsertComponent } from './prospect-clients-upsert.component';
 import { ProspectClientsDetailComponent } from './prospect-clients-detail.component';
+import { ProspectClientsSearchModalComponent } from './prospect-clients-search-modal.component';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { ProspectClientsDetailComponent } from './prospect-clients-detail.compon
   declarations: [
     ProspectClientsListComponent,
     ProspectClientsUpsertComponent,
-    ProspectClientsDetailComponent
+    ProspectClientsDetailComponent,
+    ProspectClientsSearchModalComponent
   ],
   entryComponents: [
     ProspectClientsUpsertComponent,
-    ProspectClientsDetailComponent
+    ProspectClientsDetailComponent,
+    ProspectClientsSearchModalComponent
   ]
 })
 export class ProspectClientsModule { }

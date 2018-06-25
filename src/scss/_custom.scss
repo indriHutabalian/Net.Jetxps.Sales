@@ -1,4 +1,12 @@
 // Here you can add other styles
+
+.main {
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
 .card-footer {
     > :not(:last-child) {
         margin-right: .25rem;

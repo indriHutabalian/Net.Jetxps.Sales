@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <form (submit)="search()">
+    <div class="form-group m-0">
+      <div class="input-group">
+        <input type="text" class="form-control" name="keyword" [(ngModel)]="pageQuery.keyword" autocomplete="off" placeholder="Search" />
+        <span class="input-group-append">
+          <button class="btn btn-default" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-body p-0">
+  <div class="item" *ngFor="let client of prospectClients" (click)="selectClient(client)">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <span class="text-muted">CLIENT</span>
+        <br/> {{ client.name }}
+        <br/> {{ client.address }}
+        <br/> {{ client.phone }}
+      </div>
+
+      <div class="col-12 col-md-4">
+        <span class="text-muted">ENGAGED BY</span>
+        <br/> {{client.salesEngagementName || '-' }}
+
+        <br/>
+        <span class="text-muted">MANAGED BY</span>
+        <br/> {{client.salesManagementName || '-' }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+</div>
+
+<style>
+  .item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+  }
+</style>

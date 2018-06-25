@@ -24,6 +24,12 @@ export class ProspectClientsListComponent implements OnInit {
   private pageQuery: PageQuery = new PageQuery();
 
   ngOnInit() {
+    this.bsModalService.onHide
+      .subscribe(e => {
+        if (e == 'reload')
+          this.getAll(this.pageQuery);
+      });
+
     this.getAll(this.pageQuery);
   }
 
@@ -58,11 +64,7 @@ export class ProspectClientsListComponent implements OnInit {
   }
 
   openModal(isUpsert: boolean, code: string) {
-    this.bsModalService.onHide
-      .subscribe(e => {
-        if (e == 'reload')
-          this.getAll(this.pageQuery);
-      });
+
 
     this.bsModalRef = this.bsModalService.show(isUpsert ? ProspectClientsUpsertComponent : ProspectClientsDetailComponent, { initialState: { code: code } });
   }

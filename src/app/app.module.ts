@@ -39,6 +39,8 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ToastrModule, ToastrService } from "ngx-toastr";
+
 import { SharedModule } from './views/shared/shared.module';
 import {
   AuthService,
@@ -65,6 +67,7 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    ToastrModule.forRoot(),
 
     SharedModule,
     ProspectClientsModule,
@@ -88,6 +91,7 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    ToastrService,
     AuthGuard,
     AuthService,
     BranchService,

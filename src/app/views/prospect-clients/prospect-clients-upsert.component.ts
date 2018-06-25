@@ -33,7 +33,6 @@ export class ProspectClientsUpsertComponent implements OnInit {
   }
 
   close() {
-    this.bsModalService.setDismissReason('reload');
     this.bsModalRef.hide();
   }
 
@@ -45,6 +44,7 @@ export class ProspectClientsUpsertComponent implements OnInit {
       : this.prospectClientService.create(data);
 
     save$.subscribe(res => {
+      this.bsModalService.setDismissReason('reload');
       this.close();
     }, res => {
       let error = res.error;
