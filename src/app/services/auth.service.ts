@@ -110,4 +110,10 @@ export class AuthService {
     localStorage.removeItem('userProfile');
     localStorage.removeItem('accessBranches');
   }
+
+  public getProfileByUsername(value: string): Promise<UserProfile> {
+    return this.httpClient.get<UserProfile>(`${environment.apiUrl}/v1/accounts?username=${value}`)
+      .toPromise();
+  }
+
 }
