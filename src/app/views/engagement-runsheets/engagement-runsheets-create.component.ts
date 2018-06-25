@@ -1,6 +1,15 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { EngagementRunsheetService, ProspectClientService, AuthService } from '../../services';
-import { EngagementRunsheet, PageQuery, EngagementRunsheetItem, ProspectClient, Branch } from '../../models';
+import {
+  EngagementRunsheetService,
+  ProspectClientService, AuthService
+} from '../../services';
+import {
+  EngagementRunsheet,
+  PageQuery,
+  EngagementRunsheetItem,
+  ProspectClient,
+  Branch
+} from '../../models';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ProspectClientsSearchModalComponent } from '../prospect-clients/prospect-clients-search-modal.component';
 
@@ -29,9 +38,13 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.bsModalService.onHide
-      .subscribe(data => {
-        if (data != null)
-          this.data.engagementRunsheetItems.push(new EngagementRunsheetItem(data));
+      .subscribe(response => {
+        if (response != null && typeof response == "object") {
+          let item = new EngagementRunsheetItem(response);
+debugger
+          if (!this.data.engagementRunsheetItems.includes(item))
+            this.data.engagementRunsheetItems.push(item);
+        }
       });
   }
 
@@ -40,8 +53,12 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
     data.branchName = this.currentBranch.name;
 
     this.engagementRunsheetService.create(data)
-      .subscribe(response => {
+      .subscribe(res => {
 
+      }, res => {
+        let error = res.error;
+
+        this.errors = error.errors;
       });
   }
 
@@ -54,5 +71,12 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
   openModalSearchProspectClients() {
     this.bsModalRef = this.bsModalService.show(ProspectClientsSearchModalComponent, { class: 'modal-lg' });
+  }
+
+  getProfile(email: string) {
+    this.authService.getProfileByEmail(email)
+      .then(res => {
+        console.log(res);
+      });
   }
 }

@@ -10,15 +10,9 @@
               <div class="col-12">
                 <div class="form-group">
                   <label>Sales</label>
-                  <input type="text" name="salesEmail" class="form-control" [(ngModel)]="salesEmail" />
+                  <input type="text" name="salesEmail" class="form-control" #email (change)="getProfile(email.value)" />
                   <span class="help-block">{{ getErrorValue('salesCode') }}</span>
                 </div>
-
-                <div class="form-group">
-                    <label>Sales</label>
-                    <input type="text" name="salesCode" class="form-control" [(ngModel)]="data.salesCode" />
-                    <span class="help-block">{{ getErrorValue('salesCode') }}</span>
-                  </div>
 
                 <div class="form-group">
                   <label>Note</label>
@@ -30,9 +24,16 @@
             <h6>Clients</h6>
             <hr/>
             <div class="row">
+
               <div class="col-12" *ngFor="let client of data.engagementRunsheetItems">
-                <pre>{{ client | json }}</pre>
+                <div class="description-block">
+                  <label>CLIENT</label>
+                  {{ client.prospectClientName }}
+                  <br/> {{ client.prospectClientAddress }}
+                  <br/> {{ client.prospectClientPhone }}
+                </div>
               </div>
+
             </div>
             <button type="button" class="btn btn-default" (click)="openModalSearchProspectClients()">Add</button>
           </div>

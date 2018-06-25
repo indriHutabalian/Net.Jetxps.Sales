@@ -111,8 +111,8 @@ export class AuthService {
     localStorage.removeItem('accessBranches');
   }
 
-  public getProfileByUsername(value: string): Promise<UserProfile> {
-    return this.httpClient.get<UserProfile>(`${environment.apiUrl}/v1/accounts?username=${value}`)
+  public getProfileByEmail(username: string): Promise<UserProfile> {
+    return this.httpClient.get<UserProfile>(`${environment.apiUrl}/v1/accounts?username=${username}`)
       .toPromise();
   }
 

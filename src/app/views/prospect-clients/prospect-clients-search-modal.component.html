@@ -16,20 +16,26 @@
 <div class="modal-body p-0">
   <div class="item" *ngFor="let client of prospectClients" (click)="selectClient(client)">
     <div class="row">
-      <div class="col-12 col-md-8">
-        <span class="text-muted">CLIENT</span>
-        <br/> {{ client.name }}
-        <br/> {{ client.address }}
-        <br/> {{ client.phone }}
+      <div class="col-12 col-lg-8">
+        <div class="description-block">
+          <label>CLIENT</label>
+          {{ client.name }}
+          <br/> {{ client.address }}
+          <br/> {{ client.phone }}
+        </div>
       </div>
 
-      <div class="col-12 col-md-4">
-        <span class="text-muted">ENGAGED BY</span>
-        <br/> {{client.salesEngagementName || '-' }}
+      <div class="col-12 col-lg-4">
+        <div class="description-block">
+          <label>Engaged By</label>
+          {{client.salesEngagementName || '-' }}
+        </div>
 
-        <br/>
-        <span class="text-muted">MANAGED BY</span>
-        <br/> {{client.salesManagementName || '-' }}
+        <div class="description-block">
+          <label>Managed By</label>
+          <br/> {{client.salesManagementName || '-' }}
+        </div>
+
       </div>
     </div>
   </div>

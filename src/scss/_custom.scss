@@ -16,3 +16,17 @@
         margin-left: .25rem;
     }
 }
+
+.description-block {
+    display: block;
+    margin-bottom: 1rem;
+
+    label {
+        display: block;
+        text-transform: uppercase;
+        font-weight: 700;
+        color:#999;
+        font-size: smaller;
+        margin-bottom: 0;
+    }
+}
