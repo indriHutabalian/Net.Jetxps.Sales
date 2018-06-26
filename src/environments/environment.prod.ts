@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
 
-  apiAuthUrl: `http://jet-api-auth.azurewebsites.net`,
-  apiUrl: `http://jet-api-resource.azurewebsites.net`
+  apiAuthUrl: `http://dev-jet-api-auth.azurewebsites.net`,
+  apiUrl: `http://dev-jet-api-resource.azurewebsites.net`
 };

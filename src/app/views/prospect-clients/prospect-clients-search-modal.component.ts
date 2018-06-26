@@ -17,10 +17,10 @@ export class ProspectClientsSearchModalComponent implements OnInit {
     private prospectClientService: ProspectClientService
   ) { }
 
-  private prospectClients: ProspectClient[];
-  private pageQuery: PageQuery = new PageQuery();
+  public prospectClients: ProspectClient[];
+  public pageQuery: PageQuery = new PageQuery();
 
-  private currentBranch: Branch = this.authService.getCurrentBranch();
+  public currentBranch: Branch = this.authService.getCurrentBranch();
 
   ngOnInit() {
     this.pageQuery.size = 8;

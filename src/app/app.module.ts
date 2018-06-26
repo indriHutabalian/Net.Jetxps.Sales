@@ -39,13 +39,18 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { SharedModule } from './views/shared/shared.module';
 import {
   AuthService,
   BranchService,
   ProspectClientService,
-  EngagementRunsheetService
+  EngagementRunsheetService,
+  EngagementProductTypeService,
+  EngagementSellingTypeService,
+  EngagementServiceTypeService,
+  EngagementStatusService
 } from './services';
 import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -66,6 +71,7 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
 
     SharedModule,
@@ -95,7 +101,11 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
     AuthService,
     BranchService,
     ProspectClientService,
-    EngagementRunsheetService
+    EngagementProductTypeService,
+    EngagementRunsheetService,
+    EngagementSellingTypeService,
+    EngagementServiceTypeService,
+    EngagementStatusService
   ],
   bootstrap: [AppComponent]
 })

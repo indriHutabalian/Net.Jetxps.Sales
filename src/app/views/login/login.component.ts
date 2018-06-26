@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
   ) {
   }
 
-  private message: string;
-  private accessibleBranches: any;
+  public message: string;
+  public accessibleBranches: any;
 
-  user: any = {
+  public user: any = {
     username: '',
     password: ''
   };
@@ -37,25 +37,26 @@ export class LoginComponent implements OnInit {
         this.message = ``;
       })
       .then(result => {
-        this.message = `Please wait`;
+        this.message = `Retrieving accessible branches`;
         return this.authService.getAccessBranches();
       }, error => {
-        this.message = `Retrieving accessible branches`;
+        this.message = ``;
       })
       .then(result => {
-        this.message = '';
+        this.message = ``;
 
         this.accessibleBranches = result;
       }, error => {
-        this.message = '';
+        this.message = ``;
       });
   }
 
   selectCurrentBranch(branch) {
-    this.authService.setCurrentBranch(branch);
+    if (branch) {
+      this.authService.setCurrentBranch(branch);
 
-    this.router.navigate(['/dashboard']);
-
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 }

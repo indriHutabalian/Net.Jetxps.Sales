@@ -18,11 +18,11 @@ export class ProspectClientsUpsertComponent implements OnInit {
 
   @Input() code: string;
 
-  private data: ProspectClient = new ProspectClient();
+  public data: ProspectClient = new ProspectClient();
 
-  private currentBranch: Branch = this.authService.getCurrentBranch();
+  public currentBranch: Branch = this.authService.getCurrentBranch();
 
-  private errors;
+  public errors;
 
   ngOnInit() {
     if (this.code)

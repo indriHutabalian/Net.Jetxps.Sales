@@ -15,7 +15,7 @@ export class ProspectClientsDetailComponent implements OnInit {
   ) { }
 
   @Input() code: string;
-  private prospectClient: ProspectClient;
+  public prospectClient: ProspectClient;
 
   ngOnInit() {
     if (!this.code)

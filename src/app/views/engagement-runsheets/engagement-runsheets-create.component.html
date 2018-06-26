@@ -10,7 +10,7 @@
               <div class="col-12">
                 <div class="form-group">
                   <label>Sales</label>
-                  <input type="text" name="salesEmail" class="form-control" #email (change)="getProfile(email.value)" />
+                  <input type="text" name="salesEmail" class="form-control" [(ngModel)]="data.salesName" (change)="getProfile(data.salesName)" required />
                   <span class="help-block">{{ getErrorValue('salesCode') }}</span>
                 </div>
 
@@ -23,15 +23,22 @@
 
             <h6>Clients</h6>
             <hr/>
-            <div class="row">
-
-              <div class="col-12" *ngFor="let client of data.engagementRunsheetItems">
+            <div class="row" *ngFor="let client of data.engagementRunsheetItems; let i = index;">
+              <div class="col-1 text-center">
+                {{ i + 1 }}
+              </div>
+              <div class="col-10">
                 <div class="description-block">
                   <label>CLIENT</label>
                   {{ client.prospectClientName }}
                   <br/> {{ client.prospectClientAddress }}
                   <br/> {{ client.prospectClientPhone }}
                 </div>
+              </div>
+              <div class="col-1">
+                <a href="javascript:;" (click)="removeItem(client)">
+                  <i class="fa fa-times"></i>
+                </a>
               </div>
 
             </div>
@@ -46,20 +53,3 @@
     </div>
   </div>
 </form>
-
-<pre>{{ data | json }}</pre>
-
-<ng-template #modalSearchProspectClient>
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-12" *ngFor="let client of prospectClients">
-        {{ client | json }}
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-default">
-      Cancel
-    </button>
-  </div>
-</ng-template>

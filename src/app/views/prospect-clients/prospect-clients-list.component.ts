@@ -20,8 +20,8 @@ export class ProspectClientsListComponent implements OnInit {
 
   private bsModalRef: BsModalRef;
 
-  private prospectClients: ProspectClient[];
-  private pageQuery: PageQuery = new PageQuery();
+  public prospectClients: ProspectClient[];
+  public pageQuery: PageQuery = new PageQuery();
 
   ngOnInit() {
     this.bsModalService.onHide
@@ -63,9 +63,7 @@ export class ProspectClientsListComponent implements OnInit {
     this.getAll(this.pageQuery);
   }
 
-  openModal(isUpsert: boolean, code: string) {
-
-
+  openModal(isUpsert: boolean, code: string = '') {
     this.bsModalRef = this.bsModalService.show(isUpsert ? ProspectClientsUpsertComponent : ProspectClientsDetailComponent, { initialState: { code: code } });
   }
 

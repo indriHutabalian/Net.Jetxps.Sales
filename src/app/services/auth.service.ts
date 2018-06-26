@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpClient,
-  HttpHeaders
+  HttpClient
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
@@ -109,11 +108,6 @@ export class AuthService {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userProfile');
     localStorage.removeItem('accessBranches');
-  }
-
-  public getProfileByEmail(username: string): Promise<UserProfile> {
-    return this.httpClient.get<UserProfile>(`${environment.apiUrl}/v1/accounts?username=${username}`)
-      .toPromise();
   }
 
 }
