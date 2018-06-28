@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
 import { Branch } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,14 @@ import { Branch } from '../../models';
 export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
+    private toastrService: ToastrService,
     private router: Router
   ) {
   }
 
-  public message: string;
+  public loggingIn: boolean;
   public accessibleBranches: any;
+  public selectedBranch: Branch;
 
   public user: any = {
     username: '',
@@ -27,36 +30,38 @@ export class LoginComponent implements OnInit {
   }
 
   login(user) {
-    this.message = `Logging in`;
+    this.loggingIn = true;
+
+    console.log(`Logging in`);
 
     this.authService.login(user)
-      .then(result => {
-        this.message = `Fetching user profile`;
+      .then(res => {
+        console.log(`Fetch Profile`);
         return this.authService.getProfile();
-      }, error => {
-        this.message = ``;
       })
-      .then(result => {
-        this.message = `Retrieving accessible branches`;
+      .then(res => {
+        console.log(`Fetch Access Branch`);
         return this.authService.getAccessBranches();
-      }, error => {
-        this.message = ``;
       })
-      .then(result => {
-        this.message = ``;
+      .then(res => {
+        this.loggingIn = false;
 
-        this.accessibleBranches = result;
-      }, error => {
-        this.message = ``;
+        this.accessibleBranches = res;
+        this.selectedBranch = this.accessibleBranches[0];
+
+        if (this.accessibleBranches.length == 1)
+          this.selectCurrentBranch(this.accessibleBranches[0]);
+      })
+      .catch(res => {
+        this.loggingIn = false;
+        this.authService.logout();
+        this.toastrService.error(`Login Failed`);
       });
   }
 
   selectCurrentBranch(branch) {
-    if (branch) {
-      this.authService.setCurrentBranch(branch);
-
-      this.router.navigate(['/dashboard']);
-    }
+    this.authService.setCurrentBranch(branch);
+    this.router.navigate(['/dashboard']);
   }
 
 }

@@ -32,12 +32,11 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   ) { }
 
   private bsModalRef: BsModalRef;
+  private currentBranch: Branch = this.authService.getCurrentBranch();
 
-  data: EngagementRunsheet = new EngagementRunsheet();
-
-  currentBranch: Branch = this.authService.getCurrentBranch();
-
-  errors: any = {};
+  public loadingGetProfile: boolean = false;
+  public data: EngagementRunsheet = new EngagementRunsheet();
+  public errors: any = {};
 
   ngOnInit() {
     this.bsModalService.onHide
@@ -89,6 +88,7 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   }
 
   getProfile(email: string) {
+    this.loadingGetProfile = true;
     this.accountService.getProfileByEmail(email)
       .then(res => {
         this.data.salesCode = res.userId;
@@ -98,5 +98,9 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
   removeItem(item) {
     this.data.engagementRunsheetItems = this.data.engagementRunsheetItems.filter(t => t.prospectClientCode !== item.prospectClientCode);
+  }
+
+  swap(a, b) {
+    [this.data.engagementRunsheetItems[a], this.data.engagementRunsheetItems[b]] = [this.data.engagementRunsheetItems[b], this.data.engagementRunsheetItems[a]]
   }
 }

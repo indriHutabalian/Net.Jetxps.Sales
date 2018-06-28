@@ -5,7 +5,7 @@
         <div class="col-md-8 mx-auto">
           <div class="card p-4">
             <div class="card-body">
-              <form (submit)="login(user)">
+              <form (submit)="login(user)" #formLogin="ngForm">
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
 
@@ -16,7 +16,7 @@
                         <i class="icon-user"></i>
                       </span>
                     </div>
-                    <input type="text" name="username" class="form-control" [(ngModel)]="user.username" placeholder="Username" />
+                    <input type="text" name="username" class="form-control" [(ngModel)]="user.username" placeholder="Username" required />
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
@@ -24,11 +24,13 @@
                         <i class="icon-lock"></i>
                       </span>
                     </div>
-                    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" />
+                    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" required />
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4">Login {{ message }}</button>
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="formLogin.form.invalid || loggingIn">
+                        Login <i class="fa fa-spinner fa-spin" *ngIf="loggingIn"></i>
+                      </button>
                     </div>
                     <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0">Forgot password?</button>

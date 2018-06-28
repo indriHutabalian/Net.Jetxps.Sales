@@ -47,16 +47,20 @@ import {
   BranchService,
   ProspectClientService,
   EngagementRunsheetService,
+  EngagementRunsheetItemService,
   EngagementProductTypeService,
   EngagementSellingTypeService,
   EngagementServiceTypeService,
-  EngagementStatusService
+  EngagementStatusService,
+  SalesService,
+  DataService,
 } from './services';
 import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.interceptors';
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 import { EngagementRunsheetsModule } from './views/engagement-runsheets/engagement-runsheets.module';
+import { TaskModule } from './views/task/task.module';
 
 @NgModule({
   imports: [
@@ -76,7 +80,8 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
 
     SharedModule,
     ProspectClientsModule,
-    EngagementRunsheetsModule
+    EngagementRunsheetsModule,
+    TaskModule
   ],
   declarations: [
     AppComponent,
@@ -99,13 +104,16 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
     ToastrService,
     AuthGuard,
     AuthService,
+    DataService,
     BranchService,
     ProspectClientService,
     EngagementProductTypeService,
     EngagementRunsheetService,
+    EngagementRunsheetItemService,
     EngagementSellingTypeService,
     EngagementServiceTypeService,
-    EngagementStatusService
+    EngagementStatusService,
+    SalesService
   ],
   bootstrap: [AppComponent]
 })

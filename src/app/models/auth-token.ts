@@ -3,4 +3,6 @@ export class AuthToken {
     token_type: string;
     expires_in: number;
     refresh_token: string;
+
+    expired_at: number;
 }

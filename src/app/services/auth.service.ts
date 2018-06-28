@@ -24,11 +24,15 @@ export class AuthService {
   public isAuthenticated() {
     let accessToken: AuthToken = this.getCurrentAccessToken();
     let userProfile: UserProfile = this.getCurrentUserProfile();
-    // debugger
-    return (accessToken && userProfile);
+
+    let isValidToken: boolean = true;
+    if (accessToken)
+      isValidToken = new Date() < new Date(accessToken.expired_at);
+
+    return (accessToken && isValidToken && userProfile);
   }
 
-  private setAccessToken(val) {
+  private setAccessToken(val: AuthToken) {
     let currentDate = new Date();
 
     val.expired_at = currentDate.setSeconds(currentDate.getSeconds() + val.expires_in);

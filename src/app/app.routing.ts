@@ -94,6 +94,10 @@ export const routes: Routes = [
       {
         path: 'engagement-runsheets',
         loadChildren: './views/engagement-runsheets/engagement-runsheets.module#EngagementRunsheetsModule'
+      },
+      {
+        path: 'tasks',
+        loadChildren: './views/task/task.module#TaskModule'
       }
     ]
   }

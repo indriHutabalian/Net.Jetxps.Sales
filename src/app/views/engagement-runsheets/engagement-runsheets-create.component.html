@@ -1,4 +1,5 @@
-<form (submit)="save(data)">
+<form #form="ngForm" (submit)="save(data)">
+
   <div class="animated fadeIn">
     <div class="row">
       <div class="col-12">
@@ -8,10 +9,16 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12">
-                <div class="form-group">
-                  <label>Sales</label>
-                  <input type="text" name="salesEmail" class="form-control" [(ngModel)]="data.salesName" (change)="getProfile(data.salesName)" required />
+                <div class="form-group required">
+                  <label>Sales <i class="fa fa-spinner fa-spin" *ngIf="loadingGetProfile"></i></label>
+                  <input type="text" name="salesName" class="form-control" (change)="getProfile(data.salesName)" [class.is-invalid]="salesName.invalid && (salesName.dirty || salesName.touched)" [(ngModel)]="data.salesName" #salesName="ngModel" required />
                   <span class="help-block">{{ getErrorValue('salesCode') }}</span>
+
+                  <div *ngIf="salesName.invalid && (salesName.dirty || salesName.touched)" class="invalid-feedback">
+                    <div *ngIf="salesName.errors.required">
+                      Should be filled
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
@@ -22,12 +29,23 @@
             </div>
 
             <h6>Clients</h6>
-            <hr/>
+            <hr />
             <div class="row" *ngFor="let client of data.engagementRunsheetItems; let i = index;">
               <div class="col-1 text-center">
+                <button type="button" class="btn btn-link" (click)="swap(i, i - 1)">
+                  <i class="fa fa-chevron-up"></i>
+                </button>
                 {{ i + 1 }}
+                <button type="button" class="btn btn-link" (click)="swap(i, i + 1)">
+                    <i class="fa fa-chevron-down"></i>
+                  </button>
               </div>
-              <div class="col-10">
+              <div class="col-11">
+                <div class="close">
+                  <a href="javascript:;" (click)="removeItem(client)">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>
                 <div class="description-block">
                   <label>CLIENT</label>
                   {{ client.prospectClientName }}
@@ -35,18 +53,13 @@
                   <br/> {{ client.prospectClientPhone }}
                 </div>
               </div>
-              <div class="col-1">
-                <a href="javascript:;" (click)="removeItem(client)">
-                  <i class="fa fa-times"></i>
-                </a>
-              </div>
 
             </div>
             <button type="button" class="btn btn-default" (click)="openModalSearchProspectClients()">Add</button>
           </div>
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || data.engagementRunsheetItems.length <= 0">Save</button>
           </div>
         </div>
       </div>
