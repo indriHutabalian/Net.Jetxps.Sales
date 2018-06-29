@@ -1,3 +1,5 @@
+<app-card-loader *ngIf="loading"></app-card-loader>
+
 <div class="modal-header">
   <form (submit)="search()">
     <div class="form-group m-0">
@@ -13,41 +15,19 @@
   </form>
 </div>
 
-<div class="modal-body p-0">
-  <div class="item" *ngFor="let client of prospectClients" (click)="selectClient(client)">
-    <div class="row">
-      <div class="col-12 col-lg-8">
-        <div class="description-block">
-          <label>CLIENT</label>
-          {{ client.name }}
-          <br/> {{ client.address }}
-          <br/> {{ client.phone }}
-        </div>
-      </div>
-
-      <div class="col-12 col-lg-4">
-        <div class="description-block">
-          <label>Engaged By</label>
-          {{client.salesEngagementName || '-' }}
-        </div>
-
-        <div class="description-block">
-          <label>Managed By</label>
-          {{client.salesManagementName || '-' }}
-        </div>
-
-      </div>
-    </div>
-  </div>
+<div class="modal-body">
+  <alert type="info" class="m-0" *ngIf="prospectClients.length == 0">
+    No Data
+  </alert>
+  <table class="table" *ngIf="prospectClients.length > 0">
+    <tr *ngFor="let client of prospectClients" (click)="selectClient(client)">
+      <td>
+        <app-prospect-clients-list-item [item]="client"></app-prospect-clients-list-item>
+      </td>
+    </tr>
+  </table>
 </div>
 
-<div class="modal-footer">
+<div class="modal-footer" *ngIf="pageQuery.totalPage > 1">
   <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
 </div>
-
-<style>
-  .item {
-    border: 1px solid #ddd;
-    padding: 1rem;
-  }
-</style>

@@ -3,6 +3,7 @@ import { SalesService, DataService } from '../../services';
 import { EngagementRunsheetItem, PageQuery } from '../../models';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-active',
@@ -12,13 +13,15 @@ import { Subscription } from 'rxjs';
 export class TaskActiveComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
+    private toastrService: ToastrService,
     private dataService: DataService,
     private salesService: SalesService
   ) { }
 
   private sharedSubject$: Subscription;
 
-  public items: EngagementRunsheetItem[];
+  public loading: boolean = false;
+  public items: EngagementRunsheetItem[] = [];
   public pageQuery: PageQuery = new PageQuery();
 
   ngOnInit() {
@@ -35,10 +38,16 @@ export class TaskActiveComponent implements OnInit, OnDestroy {
   }
 
   getAll(pageQuery: PageQuery) {
+    this.loading = true;
     this.salesService.getActiveEngagementRunsheetItems(pageQuery)
       .subscribe(data => {
+        this.loading = false;
         this.items = data.result;
         this.pageQuery = data.query;
+      }, res => {
+        this.loading = false;
+        let error = res.error;
+        this.toastrService.error(error.message);        
       });
   }
 

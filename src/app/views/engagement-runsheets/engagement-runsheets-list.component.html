@@ -1,0 +1,24 @@
+<div class="animate fadeIn">
+  <div class="card">
+    <app-card-loader *ngIf="loading"></app-card-loader>
+    <div class="card-header">
+      <span class="font-weight-bold text-muted text-uppercase">
+        Engagement Runsheets
+      </span>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tr *ngFor="let item of engagementRunsheets" (click)="openDetail(item)">
+          <td>
+            <app-engagement-runsheets-list-item [item]="item"></app-engagement-runsheets-list-item>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
+      <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

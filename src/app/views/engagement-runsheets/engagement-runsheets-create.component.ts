@@ -15,6 +15,7 @@ import {
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ProspectClientsSearchModalComponent } from '../prospect-clients/prospect-clients-search-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-engagement-runsheets-create',
@@ -25,6 +26,7 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   constructor(
     private bsModalService: BsModalService,
     private toastr: ToastrService,
+    private router: Router,
     private accountService: AccountService,
     private authService: AuthService,
     private engagementRunsheetService: EngagementRunsheetService,
@@ -36,7 +38,8 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
   public loadingGetProfile: boolean = false;
   public data: EngagementRunsheet = new EngagementRunsheet();
-  public errors: any = {};
+  public errors = [];
+  loading: any;
 
   ngOnInit() {
     this.bsModalService.onHide
@@ -51,7 +54,7 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   }
 
   save(data: EngagementRunsheet) {
-    this.errors = {};
+    this.errors = [];
 
     data.branchCode = this.currentBranch.code;
     data.branchName = this.currentBranch.name;
@@ -62,18 +65,34 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
       return;
     }
 
-    this.engagementRunsheetService.create(data)
-      .subscribe(res => {
-        this.toastr.success(`Engagement Runsheet has been created successfully`);
+    data.salesCode = '';
 
-        this.data = new EngagementRunsheet();
+    this.loading = true;
+    this.accountService.getSalesProfileByEmail(data.salesName)
+      .then(res => {
+        data.salesCode = res.userId;
 
-        // print dialog
-      }, res => {
+        this.engagementRunsheetService.create(data)
+          .subscribe(res => {
+            this.loading = false;
+            this.toastr.success(`Engagement Runsheet has been created successfully`);
+
+            this.router.navigate(['engagement-runsheets']);
+
+            // print dialog
+          }, res => {
+            this.loading = false;
+            let error = res.error;
+
+            this.errors = error.errors;
+          });
+      })
+      .catch(res => {
+        this.loading = false;
         let error = res.error;
-
-        this.errors = error.errors;
+        this.toastr.error(error.message);
       });
+
   }
 
   getErrorValue(propName: string) {
@@ -88,11 +107,17 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   }
 
   getProfile(email: string) {
+    this.data.salesCode = '';
+
     this.loadingGetProfile = true;
     this.accountService.getProfileByEmail(email)
       .then(res => {
+        this.loadingGetProfile = false;
         this.data.salesCode = res.userId;
         this.data.salesName = res.email;
+      })
+      .catch(err => {
+        this.loadingGetProfile = false;
       });
   }
 

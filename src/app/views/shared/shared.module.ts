@@ -6,8 +6,10 @@ import {
   BsDatepickerModule,
   PaginationModule,
   ModalModule,
-  BsDropdownModule
+  BsDropdownModule,
+  AlertModule
 } from 'ngx-bootstrap';
+import { CardLoaderComponent } from './card-loader/card-loader.component';
 
 
 @NgModule({
@@ -18,10 +20,14 @@ import {
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
-  declarations: [],
-  providers: [],
+  declarations: [
+    CardLoaderComponent
+  ],
+  providers: [
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -29,7 +35,10 @@ import {
     BsDropdownModule,
     BsDatepickerModule,
     PaginationModule,
-    ModalModule
+    ModalModule,
+    AlertModule,
+    
+    CardLoaderComponent
   ]
 })
 export class SharedModule { }

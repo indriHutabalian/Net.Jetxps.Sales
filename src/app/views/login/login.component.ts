@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ) {
   }
 
-  public loggingIn: boolean;
+  public loading: boolean = false;
   public accessibleBranches: any;
   public selectedBranch: Branch;
 
@@ -30,33 +30,35 @@ export class LoginComponent implements OnInit {
   }
 
   login(user) {
-    this.loggingIn = true;
+    this.loading = true;
 
     console.log(`Logging in`);
 
     this.authService.login(user)
       .then(res => {
-        console.log(`Fetch Profile`);
-        return this.authService.getProfile();
-      })
-      .then(res => {
-        console.log(`Fetch Access Branch`);
-        return this.authService.getAccessBranches();
-      })
-      .then(res => {
-        this.loggingIn = false;
+        let promises = [];
+        
+        promises.push(this.authService.getAccessBranches());
+        promises.push(this.authService.getProfile());
+        promises.push(this.authService.getAccessRoles());
 
-        this.accessibleBranches = res;
-        this.selectedBranch = this.accessibleBranches[0];
+        Promise.all(promises)
+          .then(responses => {
 
-        if (this.accessibleBranches.length == 1)
-          this.selectCurrentBranch(this.accessibleBranches[0]);
+            this.loading = false;
+            this.accessibleBranches = responses[0];
+            this.selectedBranch = this.accessibleBranches[0];
+
+            if (this.accessibleBranches.length == 1)
+              this.selectCurrentBranch(this.accessibleBranches[0]);
+          });
       })
       .catch(res => {
-        this.loggingIn = false;
+        this.loading = false;
         this.authService.logout();
         this.toastrService.error(`Login Failed`);
-      });
+      });;
+
   }
 
   selectCurrentBranch(branch) {

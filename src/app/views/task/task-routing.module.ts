@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'active',
     component: TaskActiveComponent,
     data: {
-      title: 'Active Task'
+      title: 'Engaging Prospect Clients'
     },
 
     children: [

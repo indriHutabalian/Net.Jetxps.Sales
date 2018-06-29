@@ -3,22 +3,21 @@
   <div class="animated fadeIn">
     <div class="row">
       <div class="col-12">
-        <h5>Create Engagement Runsheet</h5>
-
         <div class="card">
+          <app-card-loader *ngIf="loading"></app-card-loader>
+
+          <div class="card-header">
+            <span class="font-weight-bold text-muted text-uppercase">Create Engagement Runsheet</span>
+          </div>
           <div class="card-body">
             <div class="row">
               <div class="col-12">
                 <div class="form-group required">
-                  <label>Sales <i class="fa fa-spinner fa-spin" *ngIf="loadingGetProfile"></i></label>
-                  <input type="text" name="salesName" class="form-control" (change)="getProfile(data.salesName)" [class.is-invalid]="salesName.invalid && (salesName.dirty || salesName.touched)" [(ngModel)]="data.salesName" #salesName="ngModel" required />
-                  <span class="help-block">{{ getErrorValue('salesCode') }}</span>
+                  <label>Sales</label>
 
-                  <div *ngIf="salesName.invalid && (salesName.dirty || salesName.touched)" class="invalid-feedback">
-                    <div *ngIf="salesName.errors.required">
-                      Should be filled
-                    </div>
-                  </div>
+                  <input type="text" name="salesName" class="form-control" [(ngModel)]="data.salesName" #salesName="ngModel" required />
+
+                  <span class="help-block">{{ getErrorValue('salesCode') }}</span>
                 </div>
 
                 <div class="form-group">
@@ -28,38 +27,59 @@
               </div>
             </div>
 
-            <h6>Clients</h6>
-            <hr />
-            <div class="row" *ngFor="let client of data.engagementRunsheetItems; let i = index;">
-              <div class="col-1 text-center">
-                <button type="button" class="btn btn-link" (click)="swap(i, i - 1)">
-                  <i class="fa fa-chevron-up"></i>
-                </button>
-                {{ i + 1 }}
-                <button type="button" class="btn btn-link" (click)="swap(i, i + 1)">
-                    <i class="fa fa-chevron-down"></i>
-                  </button>
-              </div>
-              <div class="col-11">
-                <div class="close">
-                  <a href="javascript:;" (click)="removeItem(client)">
-                    <i class="fa fa-times"></i>
-                  </a>
-                </div>
-                <div class="description-block">
-                  <label>CLIENT</label>
-                  {{ client.prospectClientName }}
-                  <br/> {{ client.prospectClientAddress }}
-                  <br/> {{ client.prospectClientPhone }}
-                </div>
-              </div>
+            <div class="row">
+              <div class="col-12">
+                <h6>Clients
+                  <button type="button" class="btn btn-sm btn-default float-right" (click)="openModalSearchProspectClients()">Add</button>
+                </h6>
+                <div class="clearfix"></div>
+                <hr />
+                <alert type="warning" *ngIf="data.engagementRunsheetItems.length == 0">
+                  No clients has been added
+                </alert>
 
+                <table class="table table-bordered" *ngIf="data.engagementRunsheetItems.length > 0">
+                  <tbody>
+                    <tr *ngFor="let client of data.engagementRunsheetItems; let i = index;">
+                      <td class="col-auto text-center">
+                        <button type="button" class="btn btn-sm btn-link btn-block" [disabled]="i == 0" (click)="swap(i, i - 1)">
+                          <i class="fa fa-chevron-up"></i>
+                        </button>
+                        <div class="text-muted font-weight-bold">{{ i + 1 }}</div>
+                        <button type="button" class="btn btn-sm btn-link btn-block" [disabled]="i == data.engagementRunsheetItems.length - 1" (click)="swap(i, i + 1)">
+                          <i class="fa fa-chevron-down"></i>
+                        </button>
+                      </td>
+                      <td class="col">
+                        <div class="close">
+                          <a href="javascript:;" (click)="removeItem(client)">
+                            &times;
+                          </a>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-12 col-lg-8">
+                            <div class="description-block">
+                              <label>CLIENT</label>
+                              {{ client.prospectClientName }}
+                              <br/> {{ client.prospectClientAddress }}
+                              <br/> {{ client.prospectClientPhone }}
+                              <br/> {{ client.prospectClientEmail }}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <button type="button" class="btn btn-default" (click)="openModalSearchProspectClients()">Add</button>
           </div>
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || data.engagementRunsheetItems.length <= 0">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || data.engagementRunsheetItems.length <= 0">
+              Save
+            </button>
           </div>
         </div>
       </div>

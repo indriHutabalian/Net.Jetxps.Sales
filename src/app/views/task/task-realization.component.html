@@ -1,6 +1,9 @@
 <form #form="ngForm" (submit)="save(data)">
+
   <div [config]="{ show: true }" bsModal #autoShownModal="bs-modal" (onHidden)="onHidden()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
     <div class="modal-dialog modal-lg">
+      <app-card-loader *ngIf="loading"></app-card-loader>
+
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="dialog-auto-name" class="modal-title pull-left">Realization</h5>
@@ -9,6 +12,7 @@
           </button>
         </div>
         <div class="modal-body">
+
           <div *ngIf="data">
             <div class="row">
               <div class="col-12 col-md-6">
@@ -133,7 +137,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Save</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || loading">Save</button>
         </div>
       </div>
     </div>

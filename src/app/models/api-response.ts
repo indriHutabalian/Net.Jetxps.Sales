@@ -15,7 +15,7 @@ export class PageQuery {
         this.orderBy = 'CreatedDate';
         this.sort = 'DESC';
         this.page = 1;
-        this.size = 15;
+        this.size = 8;
         this.totalPage = 0;
         this.date = new Date();
     }

@@ -4,6 +4,8 @@ import { EngagementRunsheetItemService, EngagementStatusService, EngagementSelli
 import { EngagementRunsheetItem, EngagementStatus, EngagementSellingType, EngagementServiceType, EngagementProductType } from '../../models';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-realization',
@@ -13,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class TaskRealizationComponent implements OnInit, OnDestroy {
   @ViewChild('autoShownModal') autoShownModal: ModalDirective;
 
-  isModalShown: boolean = true;
+  public isModalShown: boolean = true;
 
   private engagementRunsheetCode: string;
   private prospectClientCode: string;
@@ -46,6 +48,8 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
   public selectedEngagementServiceType: EngagementServiceType;
   public selectedEngagementProductType: EngagementProductType;
 
+  public loading: boolean = false;
+  
   public isOutletSellingType: boolean = false;
 
   public data: EngagementRunsheetItem;
@@ -63,13 +67,15 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
   }
 
   save(data: EngagementRunsheetItem) {
+    this.loading = true;
     this.engagementRunsheetItemService.realization(data)
       .subscribe(res => {
-        console.log(res);
+        this.loading = false;
         this.dataService.emitValue(data);
         this.toastrService.success(`Data has been saved!`);
         this.closeModal();
       }, res => {
+        this.loading = false;
         let error = res.error;
 
         this.toastrService.error(error.message);
@@ -77,9 +83,13 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
   }
 
   getEngagementRunsheetItem(engagementRunsheetCode: string, prospectClientCode: string) {
+    this.loading = true;
     this.engagementRunsheetItemService.get(engagementRunsheetCode, prospectClientCode)
       .subscribe(res => {
+        this.loading = false;
         this.data = res;
+      }, res => {
+        this.loading = false;
       });
   }
 

@@ -1,41 +1,29 @@
 export const navItems = [
   {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer'
-  },
-  {
     title: true,
     name: 'Tasks'
   },
   {
-    name: 'Runsheet',
+    name: 'Sales Runsheet',
     url: '/engagement-runsheets',
-    icon: 'icon-cursor',
+    icon: 'icon-calendar',
     children: [
       {
         name: 'Create',
         url: '/engagement-runsheets/create',
-        icon: ''
+        icon: 'icon-dot'
+      },
+      {
+        name: 'List',
+        url: '/engagement-runsheets',
+        icon: 'icon-circle'
       }
     ]
   },
   {
-    name: 'Tasks',
-    url: '/tasks',
-    icon: 'icon-people',
-    children: [
-      {
-        name: 'Active',
-        url: '/tasks/active',
-        icon: ''
-      },
-      {
-        name: 'History',
-        url: '/dashboard',
-        icon: ''
-      }
-    ]
+    name: 'Realization',
+    url: '/tasks/active',
+    icon: 'icon-people'
   },
   {
     title: true,
@@ -45,5 +33,19 @@ export const navItems = [
     name: 'Prospect Clients',
     url: '/prospect-clients',
     icon: 'icon-people'
-  }
+  },
+  {
+    title: true,
+    name: 'Reports'
+  },
+  {
+    name: 'Sales JET ID',
+    url: '/sales-jet-id-report',
+    icon: 'icon-doc'
+  },
+  {
+    name: 'Sales Engagement',
+    url: '/sales-engagement-report',
+    icon: 'icon-doc'
+  },
 ];

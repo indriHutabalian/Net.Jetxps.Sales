@@ -17,7 +17,8 @@ export class ProspectClientsSearchModalComponent implements OnInit {
     private prospectClientService: ProspectClientService
   ) { }
 
-  public prospectClients: ProspectClient[];
+  public loading: boolean = false;
+  public prospectClients: ProspectClient[] = [];
   public pageQuery: PageQuery = new PageQuery();
 
   public currentBranch: Branch = this.authService.getCurrentBranch();
@@ -28,10 +29,16 @@ export class ProspectClientsSearchModalComponent implements OnInit {
   }
 
   getAll(pageQuery: PageQuery) {
-    this.prospectClientService.getAll(this.authService.getCurrentBranch().code, pageQuery)
+    this.loading = true;
+    this.prospectClientService.getAllIncomplete(this.authService.getCurrentBranch().code, pageQuery)
       .subscribe(data => {
+        this.loading = false;
         this.prospectClients = data.result;
         this.pageQuery = data.query;
+      }, res => {
+        this.loading = false;
+        let error = res.error;
+
       });
   }
 

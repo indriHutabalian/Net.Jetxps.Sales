@@ -1,4 +1,6 @@
 <div class="app-body">
+  <app-card-loader *ngIf="loading"></app-card-loader>
+
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
@@ -28,8 +30,8 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4" [disabled]="formLogin.form.invalid || loggingIn">
-                        Login <i class="fa fa-spinner fa-spin" *ngIf="loggingIn"></i>
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="formLogin.form.invalid">
+                        Login
                       </button>
                     </div>
                     <div class="col-6 text-right">

@@ -6,6 +6,7 @@ import { ProspectClientsListComponent } from './prospect-clients-list.component'
 import { ProspectClientsUpsertComponent } from './prospect-clients-upsert.component';
 import { ProspectClientsDetailComponent } from './prospect-clients-detail.component';
 import { ProspectClientsSearchModalComponent } from './prospect-clients-search-modal.component';
+import { ProspectClientsListItemComponent } from './prospect-clients-list-item.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,16 @@ import { ProspectClientsSearchModalComponent } from './prospect-clients-search-m
     ProspectClientsListComponent,
     ProspectClientsUpsertComponent,
     ProspectClientsDetailComponent,
-    ProspectClientsSearchModalComponent
+    ProspectClientsSearchModalComponent,
+    ProspectClientsListItemComponent,
   ],
   entryComponents: [
     ProspectClientsUpsertComponent,
     ProspectClientsDetailComponent,
-    ProspectClientsSearchModalComponent
+    ProspectClientsSearchModalComponent,
+    ProspectClientsListItemComponent,
+  ],
+  exports: [
   ]
 })
 export class ProspectClientsModule { }

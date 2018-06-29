@@ -52,6 +52,14 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('userProfile'));
   }
 
+  private setAccessRoles(val) {
+    localStorage.setItem(`accessRoles`, JSON.stringify(val));
+  }
+
+  public getCurrentAccessRoles() {
+    return JSON.parse(localStorage.getItem(`accessRoles`));
+  }
+
   private setAccessibleBranches(val) {
     localStorage.setItem('accessBranches', JSON.stringify(val));
   }
@@ -108,10 +116,21 @@ export class AuthService {
       .toPromise();
   }
 
+  public getAccessRoles() {
+    return this.httpClient.get<Branch[]>(`${environment.apiAuthUrl}/me/access/roles`)
+      .pipe(
+        tap(data => {
+          this.setAccessRoles(data);
+        })
+      )
+      .toPromise();
+  }
+
   public logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userProfile');
     localStorage.removeItem('accessBranches');
+    localStorage.removeItem('accessRoles');
   }
 
 }

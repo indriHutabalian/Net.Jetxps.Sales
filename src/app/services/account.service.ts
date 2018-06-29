@@ -20,4 +20,9 @@ export class AccountService {
     return this.httpClient.get<Account>(`${environment.apiUrl}/v1/accounts/profile?username=${username}`)
       .toPromise();
   }
+
+  public getSalesProfileByEmail(username: string) {
+    return this.httpClient.get<Account>(`${environment.apiUrl}/v1/accounts/profile/sales?username=${username}`)
+      .toPromise();
+  }
 }

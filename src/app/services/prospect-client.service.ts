@@ -7,6 +7,7 @@ import {
   ApiResponseQuery,
   PageQuery,
   ProspectClient,
+  EngagementRunsheetItem,
 } from '../models';
 
 @Injectable({
@@ -24,6 +25,10 @@ export class ProspectClientService {
 
   getAllIncomplete(branchCode: string, pageQuery: any): Observable<ApiResponseQuery<ProspectClient>> {
     return this.httpClient.get<ApiResponseQuery<ProspectClient>>(`${environment.apiUrl}/v1/prospect-clients/incomplete?branchCode=${branchCode}`, { params: pageQuery });
+  }
+
+  getEngagementRunsheetItems(code: string, pageQuery: any): Observable<ApiResponseQuery<EngagementRunsheetItem>> {
+    return this.httpClient.get<ApiResponseQuery<EngagementRunsheetItem>>(`${environment.apiUrl}/v1/prospect-clients/${code}/engagement-runsheet-items`, { params: pageQuery });
   }
 
   get(code: string): Observable<ProspectClient> {

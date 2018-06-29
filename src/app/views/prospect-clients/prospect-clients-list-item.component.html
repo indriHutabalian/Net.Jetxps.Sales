@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-12 col-lg-8">
+    <div class="description-block">
+      <label>CLIENT</label>
+      {{ item.name }}
+      <br/> {{ item.address }}
+      <br/> {{ item.phone }}
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="description-block">
+      <label>Engaged By</label>
+      {{ item.salesEngagementName || '-' }}
+    </div>
+
+    <div class="description-block">
+      <label>Managed By</label>
+      {{ item.salesManagementName || '-' }}
+    </div>
+  </div>
+</div>
