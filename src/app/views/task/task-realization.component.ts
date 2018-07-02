@@ -81,7 +81,6 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     this.getEngagementServiceTypes();
 
     this.getEngagementRunsheetItem(this.engagementRunsheetCode, this.prospectClientCode);
-    this.getPreviousEngagementRunsheetItem(this.prospectClientCode);
   }
 
   ngOnDestroy() {
@@ -199,6 +198,7 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     let query = new PageQuery();
     query.asc = false;
     query.size = 1;
+    debugger
     this.prospectClientService.getEngagementRunsheetItems(prospectClientCode, query)
       .subscribe(res => {
         this.loadingGetPreviousEngagementRunsheetItem = false;
@@ -237,6 +237,8 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     this.isSellingTypeOutlet = this.data.sellingTypeCode == 'OUTLET';
 
     this.inputTabset.tabs[0].active = true;
+
+    this.toastrService.info(`Copied!`);
   }
 
   getEngagementStatuses() {

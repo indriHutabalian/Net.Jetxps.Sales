@@ -1,0 +1,113 @@
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="description-block">
+            <label>CLIENT</label>
+            {{ item.prospectClientName }}
+            <br/> {{ item.prospectClientAddress }}
+            <br/> {{ item.prospectClientPhone }}
+            <br/> {{ item.prospectClientEmail }}
+        </div>
+    </div>
+    <div class="col-md-6" *ngIf="item.isDone">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Selling Type</label>
+                    {{ item.serviceTypeName || '-' }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Status</label>
+                    {{ item.engagementStatusCode }} - {{ item.engagementStatusName }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>PIC</label>
+                    {{ item.pic || '-' }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Phone</label>
+                    {{ item.phone || '-' }}
+                </div>
+            </div>
+            <div *ngIf="item.serviceTypeCode == 'OUTLET'">
+                <div class="col-md-6">
+                    <div class="description-block">
+                        <label>Industry</label>
+                        {{ item.industryType || '-' }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="description-block">
+                        <label>Service Type</label>
+                        {{ item.serviceTypeName || '-' }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="description-block">
+                        <label>Shipment Volume / Month</label>
+                        {{ item.volume || '-' }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="description-block">
+                        <label>Product Type</label>
+                        {{ item.productTypeName || '-' }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="description-block">
+                        <label>Forecast Amount / Month</label>
+                        {{ item.forecastAmount || '-' }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Monthly Forecast Close</label>
+                    {{ item.forecastClose || '-' }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Image</label>
+                    <i *ngIf="!item.image">-</i>
+                    <a href="https://jetstg.blob.core.windows.net{{ item.image }}" target="_blank" *ngIf="item.image">Open</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description-block">
+                    <label>Mom</label>
+                    <i *ngIf="!item.mom">-</i>
+                    <a href="https://jetstg.blob.core.windows.net{{ item.mom }}" target="_blank" *ngIf="item.mom">Open</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="description-block">
+                    <label>Remarks</label>
+                    {{ item.remarks || '-' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" *ngIf="item.isDone">
+        <div class="description-block">
+            <label>
+                <i class="fa" [ngClass]="{ 'fa-check text-success': item.isSuccess, 'fa-times text-danger': !item.isSuccess }"></i>
+                &nbsp;Sukses</label>
+        </div>
+
+        <div class="description-block">
+            <label>
+                <i class="fa" [ngClass]="{ 'fa-check text-success': !item.isCompleted, 'fa-times text-danger': item.isCompleted }"></i>
+                &nbsp;Perlu dihubungi lagi</label>
+        </div>
+    </div>
+</div>

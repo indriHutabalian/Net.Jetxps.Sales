@@ -168,10 +168,14 @@
               </div>
             </tab>
             <tab heading="Previous">
+              <alert type="info" *ngIf="!previousData">
+                No Information
+              </alert>
               <div *ngIf="previousData">
-                <pre>{{ previousData | json }}</pre>
-
-                <button type="button" (click)="copyFromPreviousData()">Copy</button>
+                <button type="button" class="btn btn-default pull-right" (click)="copyFromPreviousData()">
+                  <i class="fa fa-copy"></i>
+                </button>
+                
               </div>
             </tab>
           </tabset>

@@ -6,6 +6,7 @@ import { EngagementRunsheetsCreateComponent } from './engagement-runsheets-creat
 import { EngagementRunsheetsListComponent } from './engagement-runsheets-list.component';
 import { EngagementRunsheetsListItemComponent } from './engagement-runsheets-list-item.component';
 import { EngagementRunsheetsDetailModalComponent } from './engagement-runsheets-detail-modal.component';
+import { EngagementRunsheetsItemComponent } from './engagement-runsheets-item.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,11 @@ import { EngagementRunsheetsDetailModalComponent } from './engagement-runsheets-
     EngagementRunsheetsCreateComponent,
     EngagementRunsheetsListComponent,
     EngagementRunsheetsListItemComponent,
-    EngagementRunsheetsDetailModalComponent
+    EngagementRunsheetsDetailModalComponent,
+    EngagementRunsheetsItemComponent
+  ],
+  exports: [
+    EngagementRunsheetsItemComponent
   ]
 })
 export class EngagementRunsheetsModule { }
