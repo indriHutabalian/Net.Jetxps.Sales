@@ -12,133 +12,176 @@
           </button>
         </div>
         <div class="modal-body">
+          <tabset #inputTabset>
+            <tab heading="Current">
+              <div *ngIf="data">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="description-block">
+                      <label>CLIENT</label>
+                      <strong>{{ data.prospectClientName }}
 
-          <div *ngIf="data">
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>Selling Type</label>
-                  <select name="engagementSellingType" class="form-control" [(ngModel)]="data.sellingTypeCode" required (change)="isSellingTypeOutlet = data.sellingTypeCode == 'OUTLET'">
-                    <option *ngFor="let item of engagementSellingTypes" [ngValue]="item.code">
-                      {{ item.code }} - {{ item.name }}
-                    </option>
-                  </select>
+                      </strong>
+                      <p>{{ data.prospectClientAddress }}</p>
+                      <div class="text-muted">
+                        {{ data.prospectClientPhone }}
+                      </div>
+                      <div class="text-muted">
+                        {{ data.prospectClientEmail }}
+                      </div>
+                    </div>
 
+                  </div>
                 </div>
-              </div>
+                <hr/>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>Selling Type</label>
+                      <select name="engagementSellingType" class="form-control" [(ngModel)]="data.sellingTypeCode" required (change)="isSellingTypeOutlet = data.sellingTypeCode == 'OUTLET'">
+                        <option *ngFor="let item of engagementSellingTypes" [ngValue]="item.code">
+                          {{ item.code }} - {{ item.name }}
+                        </option>
+                      </select>
 
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>Status</label>
-                  <select name="engagementStatus" class="form-control" [(ngModel)]="data.engagementStatusCode" required>
-                    <option *ngFor="let item of engagementStatuses" [ngValue]="item.code">
-                      {{ item.code }} - {{ item.name }}
-                    </option>
-                  </select>
-                </div>
-              </div>
+                    </div>
+                  </div>
 
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>PIC</label>
-                  <input type="text" name="pic" class="form-control" [(ngModel)]="data.pic" required />
-                </div>
-              </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>Status</label>
+                      <select name="engagementStatus" class="form-control" [(ngModel)]="data.engagementStatusCode" required>
+                        <option *ngFor="let item of engagementStatuses" [ngValue]="item.code">
+                          {{ item.code }} - {{ item.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
 
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>Phone</label>
-                  <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" required />
-                </div>
-              </div>
-              <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
-                <div class="form-group required">
-                  <label>Industry</label>
-                  <input type="text" name="industry" class="form-control" [(ngModel)]="data.industryType" [required]="!isSellingTypeOutlet" />
-                </div>
-              </div>
-              <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
-                <div class="form-group required">
-                  <label>Service Type</label>
-                  <select name="engagementServiceType" class="form-control" [(ngModel)]="data.serviceTypeCode" [required]="!isSellingTypeOutlet">
-                    <option *ngFor="let item of engagementServiceTypes" [ngValue]="item.code">
-                      {{ item.code }} - {{ item.name }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
-                <div class="form-group required">
-                  <label>Shipment Volume / Month</label>
-                  <input type="number" name="volume" class="form-control" [(ngModel)]="data.volume" [required]="!isSellingTypeOutlet" />
-                </div>
-              </div>
-              <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
-                <div class="form-group required">
-                  <label>Product Type</label>
-                  <select name="engagementProductType" class="form-control" [(ngModel)]="data.productTypeCode" [required]="!isSellingTypeOutlet">
-                    <option *ngFor="let item of engagementProductTypes" [ngValue]="item.code">
-                      {{ item.code }} - {{ item.name }}
-                    </option>
-                  </select>
-                </div>
-              </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>PIC</label>
+                      <input type="text" name="pic" class="form-control" [(ngModel)]="data.pic" required />
+                    </div>
+                  </div>
 
-              <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
-                <div class="form-group required">
-                  <label>Forecast Amount / Month</label>
-                  <input type="number" name="forecastAmount" class="form-control" [(ngModel)]="data.forecastAmount" [required]="!isSellingTypeOutlet" />
-                </div>
-              </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>Phone</label>
+                      <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" required />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
+                    <div class="form-group required">
+                      <label>Industry</label>
+                      <input type="text" name="industry" class="form-control" [(ngModel)]="data.industryType" [required]="!isSellingTypeOutlet" />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
+                    <div class="form-group required">
+                      <label>Service Type</label>
+                      <select name="engagementServiceType" class="form-control" [(ngModel)]="data.serviceTypeCode" [required]="!isSellingTypeOutlet">
+                        <option *ngFor="let item of engagementServiceTypes" [ngValue]="item.code">
+                          {{ item.code }} - {{ item.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
+                    <div class="form-group required">
+                      <label>Shipment Volume / Month</label>
+                      <input type="number" name="volume" class="form-control" [(ngModel)]="data.volume" [required]="!isSellingTypeOutlet" />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
+                    <div class="form-group required">
+                      <label>Product Type</label>
+                      <select name="engagementProductType" class="form-control" [(ngModel)]="data.productTypeCode" [required]="!isSellingTypeOutlet">
+                        <option *ngFor="let item of engagementProductTypes" [ngValue]="item.code">
+                          {{ item.code }} - {{ item.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
 
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>Monthly Forecast Close</label>
-                  <select name="forecastClose" class="form-control" [(ngModel)]="data.forecastClose" required>
-                    <option value="JANUARI">JANUARI</option>
-                    <option value="FEBRUARI">FEBRUARI</option>
-                    <option value="MARET">MARET</option>
-                    <option value="APRIL">APRIL</option>
-                    <option value="MEI">MEI</option>
-                    <option value="JUNI">JUNI</option>
-                    <option value="JULI">JULI</option>
-                    <option value="AGUSTUS">AGUSTUS</option>
-                    <option value="SEPTEMBER">SEPTEMBER</option>
-                    <option value="OKTOBER">OKTOBER</option>
-                    <option value="NOVEMBER">NOVEMBER</option>
-                    <option value="DESEMBER">DESEMBER</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>Image</label>
-                  <input type="file" class="form-control" name="image" (change)="convertImageToBase64($event)" required />
-                </div>
-              </div>
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
+                    <div class="form-group required">
+                      <label>Forecast Amount / Month</label>
+                      <input type="number" name="forecastAmount" class="form-control" [(ngModel)]="data.forecastAmount" [required]="!isSellingTypeOutlet" />
+                    </div>
+                  </div>
 
-              <div class="col-12 col-md-6">
-                <div class="form-group required">
-                  <label>MOM</label>
-                  <input type="file" class="form-control" name="mom" (change)="convertMomToBase64($event)" required />
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>Monthly Forecast Close</label>
+                      <select name="forecastClose" class="form-control" [(ngModel)]="data.forecastClose" required>
+                        <option value="JANUARI">JANUARI</option>
+                        <option value="FEBRUARI">FEBRUARI</option>
+                        <option value="MARET">MARET</option>
+                        <option value="APRIL">APRIL</option>
+                        <option value="MEI">MEI</option>
+                        <option value="JUNI">JUNI</option>
+                        <option value="JULI">JULI</option>
+                        <option value="AGUSTUS">AGUSTUS</option>
+                        <option value="SEPTEMBER">SEPTEMBER</option>
+                        <option value="OKTOBER">OKTOBER</option>
+                        <option value="NOVEMBER">NOVEMBER</option>
+                        <option value="DESEMBER">DESEMBER</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>Image</label>
+                      <input type="file" class="form-control" name="image" (change)="onImageChange($event)" required #fileImage />
 
-              <div class="col-12">
-                <div class="form-group required">
-                  <label>Remarks</label>
-                  <textarea name="remarks" id="" rows="4" class="form-control" [(ngModel)]="data.remarks" required></textarea>
+                      <div *ngIf="imagePreviewBase64">
+                        <a href="javascript:;" class="close" (click)="removeImage()">
+                          &times;
+                        </a>
+                        <img [src]="imagePreviewBase64" class="img-responsive img-thumbnail" />
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group required">
+                      <label>MOM</label>
+                      <input type="file" class="form-control" name="mom" (change)="convertMomToBase64($event)" required #fileMom />
+                      <small class="help-block text-muted">
+                        Maximum size {{ fileSizeLimit / 1024 }} KBs
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group required">
+                      <label>Remarks</label>
+                      <textarea name="remarks" id="" rows="4" class="form-control" [(ngModel)]="data.remarks" required></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </tab>
+            <tab heading="Previous">
+              <div *ngIf="previousData">
+                <pre>{{ previousData | json }}</pre>
+
+                <button type="button" (click)="copyFromPreviousData()">Copy</button>
+              </div>
+            </tab>
+          </tabset>
         </div>
 
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || loading">Save</button>
         </div>
+
+        <pre>{{ data | json }}</pre>
       </div>
     </div>
   </div>

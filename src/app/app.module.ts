@@ -41,6 +41,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from "ngx-toastr";
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { SharedModule } from './views/shared/shared.module';
 import {
   AuthService,
@@ -76,6 +77,7 @@ import { TaskModule } from './views/task/task.module';
     ChartsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    Ng2ImgMaxModule,
 
     SharedModule,
     ProspectClientsModule,

@@ -131,6 +131,7 @@ export class AuthService {
     localStorage.removeItem('userProfile');
     localStorage.removeItem('accessBranches');
     localStorage.removeItem('accessRoles');
+    localStorage.removeItem('currentBranch');
   }
 
 }

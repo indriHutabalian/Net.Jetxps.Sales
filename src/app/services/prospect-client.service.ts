@@ -28,6 +28,7 @@ export class ProspectClientService {
   }
 
   getEngagementRunsheetItems(code: string, pageQuery: any): Observable<ApiResponseQuery<EngagementRunsheetItem>> {
+    pageQuery.isDone = true;
     return this.httpClient.get<ApiResponseQuery<EngagementRunsheetItem>>(`${environment.apiUrl}/v1/prospect-clients/${code}/engagement-runsheet-items`, { params: pageQuery });
   }
 

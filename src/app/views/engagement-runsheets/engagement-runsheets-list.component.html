@@ -7,7 +7,12 @@
       </span>
     </div>
     <div class="card-body">
-      <table class="table">
+
+      <alert type="info" *ngIf="!loading && engagementRunsheets.length == 0">
+        No Items
+      </alert>
+
+      <table class="table table-hover" *ngIf="engagementRunsheets.length > 0">
         <tr *ngFor="let item of engagementRunsheets" (click)="openDetail(item)">
           <td>
             <app-engagement-runsheets-list-item [item]="item"></app-engagement-runsheets-list-item>

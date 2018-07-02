@@ -7,8 +7,10 @@ import {
   PaginationModule,
   ModalModule,
   BsDropdownModule,
-  AlertModule
+  AlertModule,
+  TabsModule
 } from 'ngx-bootstrap';
+
 import { CardLoaderComponent } from './card-loader/card-loader.component';
 
 
@@ -21,7 +23,8 @@ import { CardLoaderComponent } from './card-loader/card-loader.component';
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    TabsModule.forRoot()
   ],
   declarations: [
     CardLoaderComponent
@@ -37,6 +40,7 @@ import { CardLoaderComponent } from './card-loader/card-loader.component';
     PaginationModule,
     ModalModule,
     AlertModule,
+    TabsModule,
     
     CardLoaderComponent
   ]
