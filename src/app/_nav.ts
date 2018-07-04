@@ -11,12 +11,12 @@ export const navItems = [
       {
         name: 'Create',
         url: '/engagement-runsheets/create',
-        icon: 'icon-dot'
+        icon: 'icon-arrow-right'
       },
       {
         name: 'List',
         url: '/engagement-runsheets',
-        icon: 'icon-circle'
+        icon: 'icon-arrow-right'
       }
     ]
   },
@@ -24,6 +24,23 @@ export const navItems = [
     name: 'Realization',
     url: '/tasks/active',
     icon: 'icon-people'
+  },
+  {
+    name: 'Pick Up Request',
+    url: '/pick-up-requests',
+    icon: 'icon-call-in',
+    children: [
+      {
+        name: 'Create',
+        url: '/pick-up-requests/create',
+        icon: 'icon-arrow-right'
+      },
+      {
+        name: 'List',
+        url: '/pick-up-requests',
+        icon: 'icon-arrow-right'
+      }
+    ]
   },
   {
     title: true,
@@ -40,12 +57,12 @@ export const navItems = [
   },
   {
     name: 'Sales JET ID',
-    url: '/sales-jet-id-report',
+    url: '/report/sales-jet-id',
     icon: 'icon-doc'
   },
   {
     name: 'Sales Engagement',
-    url: '/sales-engagement-report',
+    url: '/report/sales-engagement',
     icon: 'icon-doc'
   },
 ];

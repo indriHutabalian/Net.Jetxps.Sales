@@ -6,7 +6,7 @@
       </span>
     </div>
     <div class="card-body">
-      <app-card-loader *ngIf="loading"></app-card-loader>
+      <card-loader *ngIf="loading"></card-loader>
 
       <alert type="info" *ngIf="!loading && items.length == 0">
         No Tasks

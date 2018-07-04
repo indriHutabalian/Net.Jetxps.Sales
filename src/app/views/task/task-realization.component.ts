@@ -198,7 +198,7 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     let query = new PageQuery();
     query.asc = false;
     query.size = 1;
-    debugger
+    
     this.prospectClientService.getEngagementRunsheetItems(prospectClientCode, query)
       .subscribe(res => {
         this.loadingGetPreviousEngagementRunsheetItem = false;

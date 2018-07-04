@@ -1,30 +1,27 @@
-<form #form="ngForm" (submit)="save(data)">
+<div [config]="{ show: true }" bsModal #autoShownModal="bs-modal" (onHidden)="onHidden()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-lg">
+    <card-loader *ngIf="loading"></card-loader>
 
-  <div [config]="{ show: true }" bsModal #autoShownModal="bs-modal" (onHidden)="onHidden()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
-    <div class="modal-dialog modal-lg">
-      <app-card-loader *ngIf="loading"></app-card-loader>
+    <div class="modal-content" *ngIf="data">
+      <div class="modal-header">
+        <h5 id="dialog-auto-name" class="modal-title pull-left">Detail</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-engagement-runsheets-list-item [item]="data"></app-engagement-runsheets-list-item>
 
-      <div class="modal-content" *ngIf="data">
-        <div class="modal-header">
-          <h5 id="dialog-auto-name" class="modal-title pull-left">Detail</h5>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-engagement-runsheets-list-item [item]="data"></app-engagement-runsheets-list-item>
-
-          <hr/>
-          <h6>Clients</h6>
-          <table class="table">
-            <tr *ngFor="let item of data.engagementRunsheetItems">
-              <td>
-                <engagement-runsheets-item [item]="item"></engagement-runsheets-item>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <hr/>
+        <h6>Clients</h6>
+        <table class="table">
+          <tr *ngFor="let item of data.engagementRunsheetItems">
+            <td>
+              <engagement-runsheets-item [item]="item"></engagement-runsheets-item>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
-</form>
+</div>

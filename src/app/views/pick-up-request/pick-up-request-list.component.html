@@ -1,29 +1,19 @@
 <div class="animate fadeIn">
   <div class="card">
     <card-loader *ngIf="loading"></card-loader>
+
     <div class="card-header">
       <span class="font-weight-bold text-muted text-uppercase">
-        Engagement Runsheets
+        Pick Up Requests
       </span>
     </div>
+
     <div class="card-body">
-
-      <alert type="info" *ngIf="!loading && engagementRunsheets.length == 0">
-        No Items
-      </alert>
-
-      <table class="table table-hover" *ngIf="engagementRunsheets.length > 0">
-        <tr *ngFor="let item of engagementRunsheets" (click)="openDetail(item)">
-          <td>
-            <app-engagement-runsheets-list-item [item]="item"></app-engagement-runsheets-list-item>
-          </td>
-        </tr>
-      </table>
+      <alert type="info" *ngIf="!loading && pickUpRequests.length == 0"></alert>
     </div>
+
     <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
       <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>

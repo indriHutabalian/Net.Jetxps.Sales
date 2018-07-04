@@ -2,7 +2,7 @@
 
   <div [config]="{ show: true }" bsModal #autoShownModal="bs-modal" (onHidden)="onHidden()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
     <div class="modal-dialog modal-lg">
-      <app-card-loader *ngIf="loading"></app-card-loader>
+      <card-loader *ngIf="loading"></card-loader>
 
       <div class="modal-content">
         <div class="modal-header">
@@ -184,8 +184,6 @@
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || loading">Save</button>
         </div>
-
-        <pre>{{ data | json }}</pre>
       </div>
     </div>
   </div>

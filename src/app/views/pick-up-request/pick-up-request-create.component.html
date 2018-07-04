@@ -1,0 +1,93 @@
+<form #form="ngForm">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>JET ID</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Nama</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Telepon</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Email</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group required">
+              <label>Alamat</label>
+              <textarea name="" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required">
+              <label>PIC</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required">
+              <label>Jabatan</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Waktu Pick Up</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Produk</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Jumlah Barang</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Kendaraan</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Catatan</label>
+              <textarea name="" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">
+          Buat
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

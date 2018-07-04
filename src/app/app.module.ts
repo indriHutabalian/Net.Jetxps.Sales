@@ -59,9 +59,11 @@ import {
 import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.interceptors';
-import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 import { EngagementRunsheetsModule } from './views/engagement-runsheets/engagement-runsheets.module';
+import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
+import { ReportModule } from './views/report/report.module';
 import { TaskModule } from './views/task/task.module';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -80,8 +82,9 @@ import { TaskModule } from './views/task/task.module';
     Ng2ImgMaxModule,
 
     SharedModule,
-    ProspectClientsModule,
     EngagementRunsheetsModule,
+    ProspectClientsModule,
+    ReportModule,
     TaskModule
   ],
   declarations: [

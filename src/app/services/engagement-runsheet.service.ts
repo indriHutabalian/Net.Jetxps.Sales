@@ -27,7 +27,6 @@ export class EngagementRunsheetService {
   }
 
   get(code: string): Observable<EngagementRunsheet> {
-    debugger
     return this.httpClient
       .get<EngagementRunsheet>(
         `${environment.apiUrl}/v1/engagement-runsheets/${code}`);

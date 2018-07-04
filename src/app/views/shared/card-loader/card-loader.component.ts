@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-card-loader',
+  selector: 'card-loader',
   template: `
-  <div class="overlay">
+  <div class="loader">
     <i class="fa fa-spinner fa-spin"></i>
   </div>
     `,

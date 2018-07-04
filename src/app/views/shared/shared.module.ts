@@ -30,6 +30,7 @@ import { CardLoaderComponent } from './card-loader/card-loader.component';
     CardLoaderComponent
   ],
   providers: [
+    
   ],
   exports: [
     CommonModule,

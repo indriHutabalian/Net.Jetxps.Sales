@@ -5,18 +5,19 @@
       {{ item.createdDate | date: 'd MMM yyyy' }}
     </div>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-2">
     <div class="description-block">
       <label>CODE</label>
       {{ item.code }}
     </div>
-
+  </div>
+  <div class="col-sm-4">
     <div class="description-block">
       <label>SALES</label>
       {{ item.salesName }}
     </div>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-2">
     <div class="description-block">
       <label>Total Clients</label>
       {{ item.engagementRunsheetItems.length }}

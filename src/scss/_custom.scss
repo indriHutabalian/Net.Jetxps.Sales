@@ -1,5 +1,4 @@
 // Here you can add other styles
-
 .main {
     .container-fluid {
         padding-left: 15px;
@@ -25,7 +24,7 @@
         display: block;
         text-transform: uppercase;
         font-weight: 700;
-        color:#999;
+        color:#222;
         font-size: smaller;
         margin-bottom: 0;
     }
@@ -35,3 +34,20 @@
     content:"*";
     color:red;
   }
+
+.loader {
+    z-index: 1010;
+    background: #FFFFFF90;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    > .fa {
+        font-size: 2rem;
+    }
+}

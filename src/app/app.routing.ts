@@ -98,13 +98,21 @@ export const routes: Routes = [
       {
         path: 'tasks',
         loadChildren: './views/task/task.module#TaskModule'
+      },
+      {
+        path: 'report',
+        loadChildren: './views/report/report.module#ReportModule'
+      },
+      {
+        path: 'pick-up-requests',
+        loadChildren: './views/pick-up-request/pick-up-request.module#PickUpRequestModule'
       }
     ]
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
