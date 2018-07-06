@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PickUpRequestListComponent implements OnInit {
 
   constructor() { }
-
+  public loading: boolean;
   ngOnInit() {
   }
 

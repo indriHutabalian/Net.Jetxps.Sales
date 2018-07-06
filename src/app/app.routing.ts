@@ -92,13 +92,17 @@ export const routes: Routes = [
         loadChildren: './views/prospect-clients/prospect-clients.module#ProspectClientsModule'
       },
       {
+        path: 'prospect-client',
+        loadChildren: './views/prospect-client/prospect-client.module#ProspectClientModule'
+      },
+      {
         path: 'engagement-runsheets',
         loadChildren: './views/engagement-runsheets/engagement-runsheets.module#EngagementRunsheetsModule'
       },
-      {
-        path: 'tasks',
-        loadChildren: './views/task/task.module#TaskModule'
-      },
+      // {
+      //   path: 'tasks',
+      //   loadChildren: './views/task/task.module#TaskModule'
+      // },
       {
         path: 'report',
         loadChildren: './views/report/report.module#ReportModule'

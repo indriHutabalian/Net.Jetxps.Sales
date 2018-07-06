@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-task-realization',
-  templateUrl: './task-realization.component.html',
-  styleUrls: ['./task-realization.component.scss']
+  selector: 'app-engagement-runsheets-items-realization',
+  templateUrl: './engagement-runsheets-items-realization.component.html',
+  styleUrls: ['./engagement-runsheets-items-realization.component.scss']
 })
-export class TaskRealizationComponent implements OnInit, OnDestroy {
+export class EngagementRunsheetsItemsRealizationComponent implements OnInit, OnDestroy {
 
   @ViewChild('autoShownModal')
   autoShownModal: ModalDirective;
@@ -81,6 +81,8 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     this.getEngagementServiceTypes();
 
     this.getEngagementRunsheetItem(this.engagementRunsheetCode, this.prospectClientCode);
+
+    this.getPreviousEngagementRunsheetItem(this.prospectClientCode);
   }
 
   ngOnDestroy() {
@@ -116,11 +118,11 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
 
   closeModal() {
     // giring 
-    this.router.navigate(['tasks/active']);
+    this.router.navigate(['engagement-runsheets/active']);
   }
 
   onHidden() {
-    this.router.navigate(['tasks/active']);
+    this.router.navigate(['engagement-runsheets/active']);
   }
 
   convertMomToBase64(event) {
@@ -194,6 +196,7 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
   }
 
   getPreviousEngagementRunsheetItem(prospectClientCode: string) {
+    
     this.loadingGetPreviousEngagementRunsheetItem = true;
     let query = new PageQuery();
     query.asc = false;
@@ -202,7 +205,6 @@ export class TaskRealizationComponent implements OnInit, OnDestroy {
     this.prospectClientService.getEngagementRunsheetItems(prospectClientCode, query)
       .subscribe(res => {
         this.loadingGetPreviousEngagementRunsheetItem = false;
-
         this.previousData = res.result[0];
 
       }, res => {

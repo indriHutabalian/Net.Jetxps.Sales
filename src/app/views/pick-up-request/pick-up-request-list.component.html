@@ -8,12 +8,5 @@
       </span>
     </div>
 
-    <div class="card-body">
-      <alert type="info" *ngIf="!loading && pickUpRequests.length == 0"></alert>
-    </div>
-
-    <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
-      <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
-    </div>
   </div>
 </div>

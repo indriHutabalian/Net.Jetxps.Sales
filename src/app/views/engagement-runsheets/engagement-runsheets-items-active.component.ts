@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-task-active',
-  templateUrl: './task-active.component.html',
-  styleUrls: ['./task-active.component.scss']
+  selector: 'app-engagement-runsheets-items-active',
+  templateUrl: './engagement-runsheets-items-active.component.html',
+  styleUrls: ['./engagement-runsheets-items-active.component.scss']
 })
-export class TaskActiveComponent implements OnInit, OnDestroy {
+export class EngagementRunsheetsItemsActiveComponent implements OnInit {
+
   constructor(
     private router: Router,
     private toastrService: ToastrService,
@@ -47,7 +48,7 @@ export class TaskActiveComponent implements OnInit, OnDestroy {
       }, res => {
         this.loading = false;
         let error = res.error;
-        this.toastrService.error(error.message);        
+        this.toastrService.error(error.message);
       });
   }
 
@@ -64,7 +65,7 @@ export class TaskActiveComponent implements OnInit, OnDestroy {
   }
 
   openRealization(item: EngagementRunsheetItem) {
-    this.router.navigate([`/tasks/active/${item.engagementRunsheetCode}/realization/${item.prospectClientCode}`]);
+    this.router.navigate([`/engagement-runsheets/active/${item.engagementRunsheetCode}/realization/${item.prospectClientCode}`]);
   }
 
 }

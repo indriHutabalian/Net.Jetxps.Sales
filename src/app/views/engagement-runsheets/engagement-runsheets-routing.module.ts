@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EngagementRunsheetsCreateComponent } from './engagement-runsheets-create.component';
 import { EngagementRunsheetsListComponent } from './engagement-runsheets-list.component';
 import { EngagementRunsheetsDetailModalComponent } from './engagement-runsheets-detail-modal.component';
+import { EngagementRunsheetsItemsActiveComponent } from './engagement-runsheets-items-active.component';
+import { EngagementRunsheetsItemsRealizationComponent } from './engagement-runsheets-items-realization.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,24 @@ const routes: Routes = [
     }
   },
   {
-    path: '',
+    path: 'active',
+    component: EngagementRunsheetsItemsActiveComponent,
+    data: {
+      title: 'Engaging Prospect Clients'
+    },
+
+    children: [
+      {
+        path: ':code/realization/:prospectClientCode',
+        component: EngagementRunsheetsItemsRealizationComponent,
+        data: {
+          title: 'Realization'
+        }
+      }
+    ]
+  },
+  {
+    path: 'list',
     component: EngagementRunsheetsListComponent,
     data: {
       title: 'Engagement Runsheet'
@@ -27,8 +46,7 @@ const routes: Routes = [
         }
       }
     ]
-  },
-  
+  }
 ];
 
 @NgModule({

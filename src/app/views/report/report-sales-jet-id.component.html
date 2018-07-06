@@ -1,8 +1,9 @@
 <div class="animated fadeIn">
-  <form (submit)="download(dateRange)">
+  <form (submit)="exportSalesJetIdReport(dateRange)">
     <div class="row">
       <div class="col-md-6 col-lg-4">
         <div class="card">
+          <card-loader *ngIf="loading"></card-loader>
           <div class="card-body">
             <div class="form-group">
               <label>Date</label>
@@ -13,7 +14,7 @@
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">
-              Download
+              Download Excel
             </button>
           </div>
         </div>

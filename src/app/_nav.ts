@@ -11,19 +11,19 @@ export const navItems = [
       {
         name: 'Create',
         url: '/engagement-runsheets/create',
-        icon: 'icon-arrow-right'
+        icon: ' '
       },
       {
         name: 'List',
-        url: '/engagement-runsheets',
-        icon: 'icon-arrow-right'
+        url: '/engagement-runsheets/list',
+        icon: ' '
+      },
+      {
+        name: 'Realization',
+        url: '/engagement-runsheets/active',
+        icon: ' '
       }
     ]
-  },
-  {
-    name: 'Realization',
-    url: '/tasks/active',
-    icon: 'icon-people'
   },
   {
     name: 'Pick Up Request',
@@ -33,12 +33,12 @@ export const navItems = [
       {
         name: 'Create',
         url: '/pick-up-requests/create',
-        icon: 'icon-arrow-right'
+        icon: ' '
       },
       {
         name: 'List',
-        url: '/pick-up-requests',
-        icon: 'icon-arrow-right'
+        url: '/pick-up-requests/list',
+        icon: ' '
       }
     ]
   },

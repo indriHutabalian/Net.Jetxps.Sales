@@ -11,3 +11,4 @@ export * from './engagement-status.service';
 export * from './sales.service';
 export * from './data.service';
 export * from './pick-up-request.service';
+export * from './report.service';

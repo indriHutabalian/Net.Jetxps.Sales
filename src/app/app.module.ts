@@ -62,7 +62,7 @@ import { TokenInterceptor } from './app.interceptors';
 import { EngagementRunsheetsModule } from './views/engagement-runsheets/engagement-runsheets.module';
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 import { ReportModule } from './views/report/report.module';
-import { TaskModule } from './views/task/task.module';
+// import { TaskModule } from './views/task/task.module';
 
 @NgModule({
   imports: [
@@ -85,7 +85,7 @@ import { TaskModule } from './views/task/task.module';
     EngagementRunsheetsModule,
     ProspectClientsModule,
     ReportModule,
-    TaskModule
+    // TaskModule
   ],
   declarations: [
     AppComponent,

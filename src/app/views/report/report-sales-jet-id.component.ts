@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from '../../services';
 
 @Component({
   selector: 'app-report-sales-jet-id',
@@ -7,16 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportSalesJetIdComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reportService: ReportService
+  ) { }
 
-  dateRange: Date[];
+  public loading: boolean = false;
+  public dateRange: Date[] = [];
 
   ngOnInit() {
+    this.dateRange[0] = this.dateRange[1] = new Date();
   }
 
-  download(dateRange: Date[]) {
-    let startDate = new Date
-    window.open(`http://localhost:50663/v1/sales/reports/sales-jet-id?startDate=${dateRange[0]}&endDate=${dateRange[1]}}`);
+  exportSalesJetIdReport(dateRange: Date[]) {
+    this.loading = true;
+    this.reportService.exportSalesJetIdReport(dateRange[0], dateRange[1])
+      .subscribe(res => {
+        this.loading = false;
+        this.downloadFile(res);
+      }, res => {
+        this.loading = false;
+        debugger
+      });
+
+  }
+
+  downloadFile(res: any) {
+    debugger
+    let blob = new Blob([res], { type: '' });
+    let url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 
 }

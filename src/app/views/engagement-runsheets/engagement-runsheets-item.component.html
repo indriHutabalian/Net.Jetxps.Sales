@@ -3,10 +3,14 @@
     <div class="col-md-3">
         <div class="description-block">
             <label>CLIENT</label>
-            {{ item.prospectClientName }}
-            <br/> {{ item.prospectClientAddress }}
-            <br/> {{ item.prospectClientPhone }}
-            <br/> {{ item.prospectClientEmail }}
+            <strong>{{ item.prospectClientName }}</strong>
+            <p>{{ item.prospectClientAddress }}</p>
+            <div class="text-muted">
+                {{ item.prospectClientPhone }}
+            </div>
+            <div class="text-muted">
+                {{ item.prospectClientEmail }}
+            </div>
         </div>
     </div>
     <div class="col-md-6" *ngIf="item.isDone">

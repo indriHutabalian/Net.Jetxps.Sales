@@ -1,6 +1,7 @@
 <div class="animated fadeIn">
-  <form (submit)="download(dateRange)">
+  <form (submit)="search(filter)">
     <div class="card">
+      <card-loader *ngIf="loading"></card-loader>
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
@@ -13,22 +14,27 @@
           <div class="col-md-6">
             <div class="form-group">
               <label>Email</label>
-              <input type="text" class="form-control" />
+              <input type="email" name="salesEmail" class="form-control" [(ngModel)]="filter.salesEmail" />
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label>Role</label>
-              <select name="role" class="form-control">
-
+              <select name="roleType" class="form-control" [(ngModel)]="filter.roleType">
+                <option value="">Semua</option>
+                <option>Relationship Manager</option>
+                <option>Sales</option>
               </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label>Branch</label>
-              <select name="branch" class="form-control"></select>
 
+              <select name="branchCode" class="custom-select" [(ngModel)]="filter.branchCode">
+                <option value="">Semua</option>
+                <option *ngFor="let branch of branches" [ngValue]="branch.code">{{ branch.label }}</option>
+              </select>
             </div>
           </div>
         </div>
@@ -36,9 +42,55 @@
 
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">
-          Download
+          Search
         </button>
       </div>
     </div>
   </form>
+
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>
+              <div class="row">
+                <div class="col-12">
+                  <div class="description-block">
+                    <label>Sales</label>
+                    {{ item.salesName }}
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Belum POE</th>
+                        <th class="text-center">POE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let value of item.values">
+                        <td class="text-center">
+                          {{ value.dateDisplayed }}
+                        </td>
+                        <td class="text-center">
+                          {{ value.notPOEYetCount }}
+                        </td>
+                        <td class="text-center">
+                          {{ value.alreadyPOECount }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

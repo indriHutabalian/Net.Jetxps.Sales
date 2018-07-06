@@ -10,4 +10,5 @@ export * from './engagement-runsheet';
 export * from './engagement-selling-type';
 export * from './engagement-service-type';
 export * from './engagement-status';
+export * from './vm-report-srs';
 //endregion
