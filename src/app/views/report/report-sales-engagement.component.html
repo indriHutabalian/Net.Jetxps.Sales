@@ -50,7 +50,41 @@
 
   <div class="card">
     <div class="card-body">
-      <table class="table">
+
+      <div class="row d-none d-md-block">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th rowspan="2">&nbsp;</th>
+                  <th *ngFor="let date of dates">
+                    {{ date }}
+                  </th>
+                </tr>
+                <tr>
+
+                  <th *ngFor="let date of dates">
+
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of items">
+                  <td>
+                    {{ item.salesName }}
+                  </td>
+                  <td *ngFor="let date of dates">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <table class="table d-md-none">
         <tbody>
           <tr *ngFor="let item of items">
             <td>
@@ -61,8 +95,20 @@
                     {{ item.salesName }}
                   </div>
                 </div>
+                <div class="col-6">
+                  <div class="description-block">
+                    <label>Belum POE</label>
+                    {{ item.totalNotPOE }}
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="description-block">
+                    <label>Sudah POE</label>
+                    {{ item.totalPOE }}
+                  </div>
+                </div>
 
-                <div class="col-12">
+                <!-- <div class="col-12">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -85,7 +131,7 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                </div> -->
               </div>
             </td>
           </tr>

@@ -20,6 +20,8 @@ export class ReportSalesEngagementComponent implements OnInit {
   public loading: boolean = false;
 
   public dateRange: Date[] = [new Date(), new Date()];
+  
+  public dates: string[] = [];
 
   public filter: any = {
     startDate: new Date(),
@@ -43,9 +45,22 @@ export class ReportSalesEngagementComponent implements OnInit {
       });
   }
 
+  getDatesFromRange(start, end) {
+    let dates = [];
+    while (start <= end) {
+      dates.push(moment(start).format('DD-MMM-YYYY'));
+      start = moment(start).add(1, 'day');
+    }
+
+    return dates;
+  }
+
 
   search(filter) {
     this.loading = true;
+
+    this.items = [];
+    this.dates = this.getDatesFromRange(this.dateRange[0], this.dateRange[1]);
 
     filter.startDate = this.dateRange[0];
     filter.endDate = this.dateRange[1];
@@ -67,8 +82,10 @@ export class ReportSalesEngagementComponent implements OnInit {
         // convert
         result.map(item => {
           item.salesName = item.salesName.toLowerCase(),
-            item.dateDisplayed = moment(item.date).format('DD/MM/YYYY');
+            item.dateDisplayed = moment(item.date).format('DD-MMM-YYYY');
         });
+
+        debugger
 
         // sort alphabetically by name
         result.sort((a, b) => {
@@ -79,7 +96,7 @@ export class ReportSalesEngagementComponent implements OnInit {
           return 0;
         });
 
-        let salesNames:string[] = [];
+        let salesNames: string[] = [];
 
         result.forEach(item => {
           if (!salesNames.find(t => t == item.salesName))
@@ -87,9 +104,15 @@ export class ReportSalesEngagementComponent implements OnInit {
         });
 
         salesNames.forEach(salesName => {
+          let values = result.filter(t => t.salesName == salesName)
+          let totalNotPOE = values.reduce((a, b) => a + b.notPOEYetCount, 0);
+          let totalPOE = values.reduce((a, b) => a + b.alreadyPOECount, 0);
+
           this.items.push({
             salesName: salesName,
-            values: result.filter(t => t.salesName == salesName)
+            totalNotPOE: totalNotPOE,
+            totalPOE: totalPOE,
+            values: values
           });
         });
       }, res => {
