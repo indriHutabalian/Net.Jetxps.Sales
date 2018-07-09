@@ -23,6 +23,9 @@ import { EngagementRunsheetsItemsRealizationComponent } from './engagement-runsh
     EngagementRunsheetsItemComponent,
     EngagementRunsheetsItemsActiveComponent,
     EngagementRunsheetsItemsRealizationComponent
+  ],
+  exports: [
+    EngagementRunsheetsItemComponent
   ]
 })
 export class EngagementRunsheetsModule { }

@@ -1,0 +1,17 @@
+<card-loader *ngIf="loading"></card-loader>
+
+<div class="modal-header">
+  <h5 id="dialog-auto-name" class="modal-title pull-left">Detail</h5>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="items.length > 0">
+  <table class="table">
+    <tr *ngFor="let item of items">
+      <td>
+        <engagement-runsheets-item [item]="item"></engagement-runsheets-item>
+      </td>
+    </tr>
+  </table>
+</div>

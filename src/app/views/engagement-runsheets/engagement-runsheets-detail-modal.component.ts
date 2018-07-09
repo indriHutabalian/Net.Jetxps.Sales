@@ -47,10 +47,10 @@ export class EngagementRunsheetsDetailModalComponent implements OnInit {
 
   closeModal() {
     // giring 
-    this.router.navigate(['engagement-runsheets']);
+    this.router.navigate(['engagement-runsheets/list']);
   }
 
   onHidden() {
-    this.router.navigate(['engagement-runsheets']);
+    this.router.navigate(['engagement-runsheets/list']);
   }
 }

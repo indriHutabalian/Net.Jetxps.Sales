@@ -48,40 +48,42 @@
     </div>
   </form>
 
-  <div class="card">
+  <div class="card" *ngIf="items.length > 0">
     <div class="card-body">
 
-      <div class="row d-none d-md-block">
-        <div class="col-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th rowspan="2">&nbsp;</th>
-                  <th *ngFor="let date of dates">
-                    {{ date }}
-                  </th>
-                </tr>
-                <tr>
+      <div class="table-responsive d-none d-md-block">
+        <table class="table table-bordered table-layout-fixed">
+          <thead>
+            <tr>
+              <th class="sticky-col" rowspan="2" style="width: 320px;">Sales</th>
+              <th class="text-center" *ngFor="let date of dates" style="width: 120px;">
+                {{ date }}
+              </th>
+            </tr>
+          </thead>
 
-                  <th *ngFor="let date of dates">
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td class="sticky-col">
+                {{ item.salesName }}
+              </td>
+              <td class="text-center" *ngFor="let value of item.values">
+                <div class="btn-group" role="group" *ngIf="value.notPOEYetCount > 0 || value.alreadyPOECount > 0">
+                  <button type="button" class="btn btn-sm btn-default" [class.btn-disabled]="value.notPOEYetCount == 0" (click)="openDetail(item.salesName, value.dateDisplayed, false)">
+                    {{ value.notPOEYetCount }}
+                  </button>
+                  <button type="button" class="btn btn-sm btn-success" [class.btn-disabled]="value.alreadyPOECount == 0" (click)="openDetail(item.salesName, value.dateDisplayed, true)">
+                    {{ value.alreadyPOECount }}
+                  </button>
+                </div>
 
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr *ngFor="let item of items">
-                  <td>
-                    {{ item.salesName }}
-                  </td>
-                  <td *ngFor="let date of dates">
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                <span *ngIf="value.notPOEYetCount == 0 && value.alreadyPOECount == 0">
+                  -
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <table class="table d-md-none">
@@ -140,3 +142,16 @@
     </div>
   </div>
 </div>
+
+
+
+<ng-template #modalClient>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Clients
+    </h4>
+  </div>
+  <div class="modal-body">
+
+  </div>
+</ng-template>

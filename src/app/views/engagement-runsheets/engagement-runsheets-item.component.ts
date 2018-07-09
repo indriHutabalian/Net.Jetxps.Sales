@@ -9,7 +9,8 @@ import { EngagementRunsheetItem } from '../../models';
 export class EngagementRunsheetsItemComponent implements OnInit {
   @Input() item: EngagementRunsheetItem;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

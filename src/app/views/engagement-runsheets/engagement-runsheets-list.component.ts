@@ -54,6 +54,6 @@ export class EngagementRunsheetsListComponent implements OnInit {
   }
 
   openDetail(item: EngagementRunsheet) {
-    this.router.navigate([`/engagement-runsheets/${item.code}`]);
+    this.router.navigate([`/engagement-runsheets/list/${item.code}`]);
   }
 }

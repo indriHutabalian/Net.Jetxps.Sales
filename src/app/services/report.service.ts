@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import * as moment from 'moment';
-import { VMReportSRS, ApiResponseQuery } from '../models';
+import { VMReportSRS, ApiResponseQuery, EngagementRunsheetItem } from '../models';
 import { Observable } from 'rxjs';
+import { isProceduralRenderer } from '@angular/core/src/render3/interfaces/renderer';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,10 @@ export class ReportService {
   }
 
   getSalesEngagementSummary(filter): Observable<ApiResponseQuery<VMReportSRS>> {
-    filter.startDate = moment(filter.startDate).format('MM/DD/YYYY');
-    filter.endDate = moment(filter.endDate).format('MM/DD/YYYY');
     return this.httpClient.post<ApiResponseQuery<VMReportSRS>>(`${environment.apiUrl}/v1/sales/sales-engagement-summary`, filter);
+  }
+
+  getSalesEngagementDetail(filter, isPOE: boolean): Observable<ApiResponseQuery<EngagementRunsheetItem>> {
+    return this.httpClient.post<ApiResponseQuery<EngagementRunsheetItem>>(`${environment.apiUrl}/v1/sales/sales-engagement-detail?isPOE=${isPOE}`, filter);
   }
 }
