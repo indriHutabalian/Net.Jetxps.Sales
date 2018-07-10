@@ -108,8 +108,8 @@ export const routes: Routes = [
         loadChildren: './views/report/report.module#ReportModule'
       },
       {
-        path: 'pick-up-requests',
-        loadChildren: './views/pick-up-request/pick-up-request.module#PickUpRequestModule'
+        path: 'pick-up-orders',
+        loadChildren: './views/pick-up-order/pick-up-order.module#PickUpOrderModule'
       }
     ]
   }

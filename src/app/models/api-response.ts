@@ -5,6 +5,7 @@
 export class ApiResponseQuery<T> {
     query: PageQuery;
     result: T[];
+    data: T[];
 }
 
 export class PageQuery {

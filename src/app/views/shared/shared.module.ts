@@ -12,6 +12,7 @@ import {
 } from 'ngx-bootstrap';
 
 import { CardLoaderComponent } from './card-loader/card-loader.component';
+import { DescriptionBlockComponent } from './description-block/description-block.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CardLoaderComponent } from './card-loader/card-loader.component';
     TabsModule.forRoot()
   ],
   declarations: [
-    CardLoaderComponent
+    CardLoaderComponent,
+    DescriptionBlockComponent
   ],
   providers: [
     
@@ -43,7 +45,8 @@ import { CardLoaderComponent } from './card-loader/card-loader.component';
     AlertModule,
     TabsModule,
     
-    CardLoaderComponent
+    CardLoaderComponent,
+    DescriptionBlockComponent
   ]
 })
 export class SharedModule { }

@@ -55,6 +55,8 @@ import {
   EngagementStatusService,
   SalesService,
   DataService,
+  PickUpOrderService,
+  ProductService,
 } from './services';
 import { AuthGuard } from './guards';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -62,6 +64,7 @@ import { TokenInterceptor } from './app.interceptors';
 import { EngagementRunsheetsModule } from './views/engagement-runsheets/engagement-runsheets.module';
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 import { ReportModule } from './views/report/report.module';
+import { PickUpOrderModule } from './views/pick-up-order/pick-up-order.module';
 // import { TaskModule } from './views/task/task.module';
 
 @NgModule({
@@ -85,6 +88,7 @@ import { ReportModule } from './views/report/report.module';
     EngagementRunsheetsModule,
     ProspectClientsModule,
     ReportModule,
+    PickUpOrderModule
     // TaskModule
   ],
   declarations: [
@@ -117,6 +121,8 @@ import { ReportModule } from './views/report/report.module';
     EngagementSellingTypeService,
     EngagementServiceTypeService,
     EngagementStatusService,
+    PickUpOrderService,
+    ProductService,
     SalesService
   ],
   bootstrap: [AppComponent]

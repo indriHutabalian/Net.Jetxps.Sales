@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickUpRequestListComponent } from './pick-up-request-list.component';
+import { PickUpOrderListComponent } from './pick-up-order-list.component';
 
-describe('PickUpRequestListComponent', () => {
-  let component: PickUpRequestListComponent;
-  let fixture: ComponentFixture<PickUpRequestListComponent>;
+describe('PickUpOrderListComponent', () => {
+  let component: PickUpOrderListComponent;
+  let fixture: ComponentFixture<PickUpOrderListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickUpRequestListComponent ]
+      declarations: [ PickUpOrderListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PickUpRequestListComponent);
+    fixture = TestBed.createComponent(PickUpOrderListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

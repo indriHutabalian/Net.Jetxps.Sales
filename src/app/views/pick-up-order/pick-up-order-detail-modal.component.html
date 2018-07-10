@@ -1,0 +1,36 @@
+<div [config]="{ show: true }" bsModal #autoShownModal="bs-modal" (onHidden)="onHidden()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-lg">
+    <card-loader *ngIf="loading"></card-loader>
+
+    <div class="modal-content" *ngIf="data">
+      <div class="modal-header">
+        <h5 id="dialog-auto-name" class="modal-title pull-left">Detail: {{ data.code }} ({{ data.status }})</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <description-block [label]="'Pengirim'" [value]="data.name"></description-block>
+            <description-block [label]="'Alamat'" [value]="data.address"></description-block>
+            <description-block [label]="'PIC / Jabatan'" [value]="data.pic + '/' + data.position"></description-block>
+
+          </div>
+          <div class="col-md-4">
+            <description-block [label]="'Jumlah Barang'" [value]="data.pickUpItemCount"></description-block>
+            <description-block [label]="'Sisa / Aktual Jumlah Barang'" [value]="data.remainingPickUpItemCount + ' / ' + data.actualPickUpItemCount" *ngIf="data.status != 'REQUESTED' && data.status != 'CONFIRMED'"></description-block>
+            <description-block [label]="'Deskripsi'" [value]="data.description"></description-block>
+            <description-block [label]="'Kendaraan'" [value]="data.vehicle"></description-block>
+
+          </div>
+          <div class="col-md-4">
+            <description-block [label]="'Waktu Penjemputan'" [type]="'datetime'" [value]="data.pickUpTime"></description-block>
+            <description-block [label]="'Estimasi Waktu Penjemputan'" [type]="'datetime'" [value]="data.estimatedPickUpTime" *ngIf="data.status != 'REQUESTED'"></description-block>
+            <description-block [label]="'Tiba'" [value]="data.checkInDate" [type]="'datetime'" *ngIf="data.status != 'REQUESTED' && data.status != 'CONFIRMED' && data.status != 'ARRIVED'"></description-block>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

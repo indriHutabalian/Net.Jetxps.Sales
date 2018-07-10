@@ -27,17 +27,17 @@ export const navItems = [
   },
   {
     name: 'Pick Up Request',
-    url: '/pick-up-requests',
+    url: '/pick-up-orders',
     icon: 'icon-call-in',
     children: [
       {
         name: 'Create',
-        url: '/pick-up-requests/create',
+        url: '/pick-up-orders/create',
         icon: ' '
       },
       {
         name: 'List',
-        url: '/pick-up-requests/list',
+        url: '/pick-up-orders/list',
         icon: ' '
       }
     ]

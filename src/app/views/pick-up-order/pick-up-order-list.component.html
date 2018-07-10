@@ -1,0 +1,48 @@
+<div class="animate fadeIn">
+  <div class="card">
+    <card-loader *ngIf="loading"></card-loader>
+
+    <!-- <div class="card-header">
+      <span class="font-weight-bold text-muted text-uppercase">
+        Pick Up Requests
+      </span>
+    </div> -->
+
+    <div class="card-body">
+      <table class="table table-hover">
+        <tr *ngFor="let item of pickUpOrders" (click)="openDetail(item)">
+          <td>
+            <div class="row">
+              <div class="col-12">
+                <span class="badge badge-dark pull-right position-absolute" style="right: 1rem;">{{ item.status }}</span>
+              </div>
+              <div class="col-md-3">
+                <description-block [label]="'Code'" [value]="item.code"></description-block>
+                <description-block [label]="'Produk'" [value]="item.productCode"></description-block>
+              </div>
+              <div class="col-md-3">
+                <description-block [label]="'Pengirim'" [value]="item.name"></description-block>
+                <description-block [label]="'PIC / Jabatan'" [value]="item.pic + '/' + item.position"></description-block>
+              </div>
+              <div class="col-md-3">
+                <description-block [label]="'Jumlah Barang'" [value]="item.pickUpItemCount"></description-block>
+                <description-block [label]="'Sisa / Aktual Jumlah Barang'" [value]="item.remainingPickUpItemCount + ' / ' + item.actualPickUpItemCount" *ngIf="item.status != 'REQUESTED' && item.status != 'CONFIRMED'"></description-block>
+              </div>
+              <div class="col-md-3">
+                <description-block [label]="'Waktu Penjemputan'" [type]="'datetime'" [value]="item.pickUpTime"></description-block>
+                <description-block [label]="'Estimasi Waktu Penjemputan'" [type]="'datetime'" [value]="item.estimatedPickUpTime" *ngIf="item.status != 'REQUESTED'"></description-block>
+                <description-block [label]="'Tiba'" [value]="item.checkInDate" [type]="'datetime'" *ngIf="item.status != 'REQUESTED' && item.status != 'CONFIRMED' && item.status != 'ARRIVED'"></description-block>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
+      <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

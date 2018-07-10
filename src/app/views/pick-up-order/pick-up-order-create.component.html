@@ -1,0 +1,108 @@
+<form #form="ngForm" (submit)="save(data)">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>JET ID</label>
+              <div class="input-group">
+                <input type="text" class="form-control" name="jetIdCode" [(ngModel)]="data.jetIdCode">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="searchJetId(data.jetIdCode)"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Nama</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="data.name" required />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Telepon</label>
+              <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="data.phoneNumber" required />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group required">
+              <label>Email</label>
+              <input type="text" class="form-control" name="email" [(ngModel)]="data.email" required />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group required">
+              <label>Alamat</label>
+              <textarea class="form-control" name="address" [(ngModel)]="data.address" required></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required">
+              <label>PIC</label>
+              <input type="text" class="form-control" name="pic" [(ngModel)]="data.pic" required/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required">
+              <label>Jabatan</label>
+              <input type="text" class="form-control" name="position'" [(ngModel)]="data.position" required/>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Waktu Pick Up</label>
+              <input type="text" class="form-control" name="pickUpTime" [(ngModel)]="data.pickUpTime" bsDatepicker required/>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required">
+              <label>Produk</label>
+              <select name="productCode" class="form-control" [(ngModel)]="data.productCode" required>
+                <option value=""></option>
+                <option *ngFor="let product of products" [ngValue]="product.code">
+                  {{ product.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required" required>
+              <label>Jumlah Barang</label>
+              <input type="number" class="form-control" [(ngModel)]="data.pickUpItemCount" name="pickUpItemCount" min="1" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group required" required>
+              <label>Kendaraan</label>
+              <select name="vehicle" class="form-control" [(ngModel)]="data.vehicle">
+                <option>MOTOR</option>
+                <option>MOBIL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group" required>
+              <label>Catatan</label>
+              <textarea name="description" class="form-control" [(ngModel)]="data.description" required></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">
+          Save
+        </button>
+      </div>
+
+      <pre>{{ data | json }}</pre>
+    </div>
+  </div>
+</form>

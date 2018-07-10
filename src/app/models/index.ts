@@ -11,4 +11,6 @@ export * from './engagement-selling-type';
 export * from './engagement-service-type';
 export * from './engagement-status';
 export * from './vm-report-srs';
+export * from './pick-up-order';
+export * from './product';
 //endregion
