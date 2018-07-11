@@ -6,8 +6,27 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <pre>{{ prospectClient | json }}</pre>
+<div class="modal-body" *ngIf="prospectClient">
+  <description-block [label]="'Code'" [value]="prospectClient.code"></description-block>
+  <description-block [label]="'Name'" [value]="prospectClient.name"></description-block>
+  <description-block [label]="'Address'" [value]="prospectClient.address"></description-block>
+  <description-block [label]="'Phone'" [value]="prospectClient.phone"></description-block>
+  <description-block [label]="'Zip Code'" [value]="prospectClient.zipCode"></description-block>
+  <description-block [label]="'Email'" [value]="prospectClient.email"></description-block>
+  <description-block [label]="'Sales Engagement Name'" [value]="prospectClient.salesEngagementName"></description-block>
+  <description-block [label]="'Sales Management Name'" [value]="prospectClient.salesManagementName"></description-block>
+  <description-block [label]="'Management Branch'" [value]="prospectClient.managementBranchName"></description-block>
+
+  <i class="fa" [ngClass]="{
+    'fa-check text-success': prospectClient.isSuccess,
+    'fa-times text-danger': !prospectClient.isSuccess
+    }"></i> Complete
+  <br/>
+  <i class="fa" [ngClass]="{
+      'fa-check text-success': prospectClient.isCompleted,
+      'fa-times text-danger': !prospectClient.isCompleted
+      }"></i> Success
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="close()">Close</button>

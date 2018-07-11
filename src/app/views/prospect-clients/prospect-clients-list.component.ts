@@ -4,6 +4,8 @@ import { PageQuery, ProspectClient } from '../../models';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ProspectClientsUpsertComponent } from './prospect-clients-upsert.component';
 import { ProspectClientsDetailComponent } from './prospect-clients-detail.component';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prospect-clients-list',
@@ -14,13 +16,15 @@ export class ProspectClientsListComponent implements OnInit {
 
   constructor(
     private bsModalService: BsModalService,
+    private toastrService: ToastrService,
     private authService: AuthService,
     private prospectClientService: ProspectClientService
   ) { }
 
   private bsModalRef: BsModalRef;
 
-  public prospectClients: ProspectClient[];
+  public loading: boolean = false;
+  public prospectClients: ProspectClient[] = [];
   public pageQuery: PageQuery = new PageQuery();
 
   ngOnInit() {
@@ -34,18 +38,24 @@ export class ProspectClientsListComponent implements OnInit {
   }
 
   getAll(pageQuery: PageQuery) {
+    this.loading = true;
     this.prospectClientService.getAll(this.authService.getCurrentBranch().code, pageQuery)
       .subscribe(data => {
+        this.loading = false;
         this.prospectClients = data.result;
         this.pageQuery = data.query;
+      }, res => {
+        this.loading = false;
+        let error = res.error;
+        this.toastrService.error(error.message);
       });
-
   }
 
   delete(data) {
     if (confirm(`Are you sure want to delete this data?`)) {
       this.prospectClientService.delete(data.code)
         .subscribe(data => {
+          this.toastrService.success(`Deleted`);
           this.getAll(this.pageQuery);
         });
     }
@@ -70,6 +80,7 @@ export class ProspectClientsListComponent implements OnInit {
   setOpen(code: string) {
     this.prospectClientService.setOpen(code)
       .subscribe(res => {
+        this.toastrService.success(`Updated`);
         this.getAll(this.pageQuery);
       })
   }
@@ -77,6 +88,7 @@ export class ProspectClientsListComponent implements OnInit {
   setClose(code: string) {
     this.prospectClientService.setClose(code)
       .subscribe(res => {
+        this.toastrService.success(`Updated`);
         this.getAll(this.pageQuery);
       })
   }

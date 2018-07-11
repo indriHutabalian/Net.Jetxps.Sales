@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProspectClient } from '../../models';
 
 @Component({
-  selector: 'app-prospect-clients-list-item',
+  selector: 'prospect-clients-list-item',
   templateUrl: './prospect-clients-list-item.component.html',
   styleUrls: ['./prospect-clients-list-item.component.scss']
 })

@@ -40,12 +40,13 @@
     </div><!-- /.container-fluid -->
   </main>
 
-  <app-aside [fixed]="true" [display]="true">
+  <!-- <app-aside [fixed]="true" [display]="true"> -->
+  <app-aside [fixed]="true">
     <!-- <tabset>
       <tab>
         <ng-template tabHeading><i class="icon-list"></i></ng-template> -->
 
-        <div class="list-group list-group-accent" [perfectScrollbar] style="max-height: 100%;">
+        <div class="list-group list-group-accent" [perfectScrollbar] style="max-height: 100%;" *ngIf="accessBranches.length > 1">
           <div class="list-group-item bg-light text-center font-weight-bold text-muted text-uppercase small">
             Accessible Branches
           </div>

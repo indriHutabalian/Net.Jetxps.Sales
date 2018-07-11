@@ -22,7 +22,7 @@
   <table class="table" *ngIf="prospectClients.length > 0">
     <tr *ngFor="let client of prospectClients" (click)="selectClient(client)">
       <td>
-        <app-prospect-clients-list-item [item]="client"></app-prospect-clients-list-item>
+        <prospect-clients-list-item [item]="client"></prospect-clients-list-item>
       </td>
     </tr>
   </table>

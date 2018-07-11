@@ -1,7 +1,14 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-12">
+      <button type="button" class="btn btn-primary pull-right" (click)="openModal(true)">Add</button>
+      <br/>
+      <br/>
+    </div>
+    <div class="col-12">
       <div class="card">
+        <card-loader *ngIf="loading"></card-loader>
+
         <div class="card-header">
           <div class="row">
             <div class="col-md-4 col-xl-3 ml-auto">
@@ -21,72 +28,41 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <th style="width: 75px;" class="text-center">
-                  <button class="btn btn-sm btn-primary" (click)="openModal(true)">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </th>
-                <th style="width: 175px;" class="text-center">Code</th>
-                <th>Client</th>
-                <th style="width: 100px;" class="text-center">Complete</th>
-                <th style="width: 100px;" class="text-center">Success</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let client of prospectClients">
-                <td class="text-center">
-                  <div class="btn-group" dropdown>
-                    <a dropdownToggle href="javascript:;" class="dropdown-toggle">
-                      <span class="caret"></span>
-                    </a>
-                    <ul *dropdownMenu class="dropdown-menu" role="menu">
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:;" (click)="openModal(false, client.code)">Detail</a>
-                      </li>
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:;" (click)="openModal(true, client.code)">Update</a>
-                      </li>
-                      <li class="divider dropdown-divider"></li>
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:;" (click)="setOpen(client.code)">Set Open</a>
-                      </li>
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:;" (click)="setClose(client.code)">Set Close</a>
-                      </li>
-                      <li class="divider dropdown-divider"></li>
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:;" (click)="delete(client)">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-                <td class="text-center">
-                  {{ client.code }}
-                </td>
-                <td>
-                  {{ client.name }}
-                  <br/> {{ client.address }}
-                  <br/> {{ client.phone }}
-                </td>
-                <td class="text-center">
-                  <i class="fa" [ngClass]="{
-                      'fa-check text-success': client.isSuccess,
-                      'fa-times text-danger': !client.isSuccess
-                      }"></i>
-                </td>
-                <td class="text-center">
-                  <i class="fa" [ngClass]="{
-                      'fa-check text-success': client.isCompleted,
-                      'fa-times text-danger': !client.isCompleted
-                      }"></i>
-                </td>
-
-              </tr>
-            </tbody>
+          <alert type="info" *ngIf="!loading && prospectClients.length == 0">
+            No Items
+          </alert>
+          <table class="table table-hover" *ngIf="prospectClients.length > 0">
+            <tr *ngFor="let item of prospectClients">
+              <td class="text-center" style="width: 40px;">
+                <div class="btn-group" dropdown>
+                  <a dropdownToggle href="javascript:;" class="dropdown-toggle">
+                    <span class="caret"></span>
+                  </a>
+                  <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:;" (click)="openModal(false, item.code)">Detail</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:;" (click)="openModal(true, item.code)">Update</a>
+                    </li>
+                    <li class="divider dropdown-divider"></li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:;" (click)="setOpen(item.code)">Set Open</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:;" (click)="setClose(item.code)">Set Close</a>
+                    </li>
+                    <li class="divider dropdown-divider"></li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:;" (click)="delete(item)">Delete</a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <td>
+                <prospect-clients-list-item [item]="item"></prospect-clients-list-item>
+              </td>
+            </tr>
           </table>
         </div>
         <div class="card-footer">

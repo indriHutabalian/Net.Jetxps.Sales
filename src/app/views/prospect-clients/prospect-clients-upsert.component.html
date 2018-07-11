@@ -1,4 +1,4 @@
-<form (submit)="save(data)">
+<form #form="ngForm" (submit)="save(data)">
   <div class="modal-header">
     <h4 class="modal-title pull-left">
       {{ data.id ? 'Update' : 'Add' }}
@@ -10,37 +10,37 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-12">
-        <div class="form-group">
+        <div class="form-group required">
           <label>Code</label>
-          <input type="text" name="code" class="form-control" [(ngModel)]="data.code" [disabled]="data.id" />
+          <input type="text" name="code" class="form-control" [(ngModel)]="data.code" [disabled]="data.id" required />
           <span class="help-block">{{ getErrorValue('code') }}</span>
         </div>
       </div>
       <div class="col-12">
-        <div class="form-group">
+        <div class="form-group required">
           <label>Name</label>
-          <input type="text" name="name" class="form-control" [(ngModel)]="data.name" />
+          <input type="text" name="name" class="form-control" [(ngModel)]="data.name" required />
           <span class="help-block">{{ getErrorValue('name') }}</span>
         </div>
       </div>
       <div class="col-12">
-        <div class="form-group">
+        <div class="form-group required">
           <label>E-mail</label>
-          <input type="text" name="email" class="form-control" [(ngModel)]="data.email" />
+          <input type="text" name="email" class="form-control" [(ngModel)]="data.email" required />
           <span class="help-block">{{ getErrorValue('email') }}</span>
         </div>
       </div>
       <div class="col-12">
-        <div class="form-group">
+        <div class="form-group required">
           <label>Phone</label>
-          <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" />
+          <input type="text" name="phone" class="form-control" [(ngModel)]="data.phone" required />
           <span class="help-block">{{ getErrorValue('phone') }}</span>
         </div>
       </div>
       <div class="col-12">
-        <div class="form-group">
+        <div class="form-group required">
           <label>Address</label>
-          <textarea name="address" cols="30" rows="10" class="form-control" [(ngModel)]="data.address"></textarea>
+          <textarea name="address" cols="30" rows="10" class="form-control" [(ngModel)]="data.address" required></textarea>
           <span class="help-block">{{ getErrorValue('address') }}</span>
         </div>
       </div>
@@ -54,6 +54,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Save</button>
   </div>
 </form>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProspectClientService, BranchService, AuthService } from '../../services';
 import { ProspectClient, Branch, PageQuery } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prospect-clients-upsert',
@@ -13,6 +14,7 @@ export class ProspectClientsUpsertComponent implements OnInit {
     private bsModalRef: BsModalRef,
     private bsModalService: BsModalService,
     private authService: AuthService,
+    private toastrService: ToastrService,
     private prospectClientService: ProspectClientService
   ) { }
 
@@ -44,12 +46,15 @@ export class ProspectClientsUpsertComponent implements OnInit {
       : this.prospectClientService.create(data);
 
     save$.subscribe(res => {
+      this.toastrService.success(`Success`);
       this.bsModalService.setDismissReason('reload');
       this.close();
     }, res => {
       let error = res.error;
 
       this.errors = error.errors;
+
+      this.toastrService.error(error.message);
     });
   }
 
