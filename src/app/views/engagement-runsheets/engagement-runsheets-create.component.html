@@ -9,9 +9,16 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group required">
-                  <label>Sales</label>
+                  <label>Sales
+                    <i class="fa fa-spinner fa-spin" *ngIf="loadingGetProfile"></i>
 
-                  <input type="email" name="salesName" class="form-control" [(ngModel)]="data.salesName" #salesName="ngModel" required />
+                    <i class="fa"
+                      [ngClass]="{ 'fa-check text-success': data.salesCode, 'fa-times text-danger': !data.salesCode }"
+                      *ngIf="salesName.touched && !loadingGetProfile">
+                    </i>
+                  </label>
+
+                  <input type="email" name="salesName" class="form-control" [(ngModel)]="data.salesName" #salesName="ngModel" required (change)="getProfile(salesName.value)" />
 
                   <span class="help-block">{{ getErrorValue('salesCode') }}</span>
                 </div>
@@ -31,7 +38,7 @@
                 <div class="clearfix"></div>
                 <hr />
                 <alert type="warning" *ngIf="data.engagementRunsheetItems.length == 0">
-                  No clients has been added
+                  No client has been added
                 </alert>
 
                 <table class="table table-bordered" *ngIf="data.engagementRunsheetItems.length > 0">
@@ -73,7 +80,7 @@
           </div>
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid || data.engagementRunsheetItems.length <= 0">
+            <button type="submit" class="btn btn-primary" [disabled]="data.salesCode == '' || data.engagementRunsheetItems.length == 0">
               Save
             </button>
           </div>

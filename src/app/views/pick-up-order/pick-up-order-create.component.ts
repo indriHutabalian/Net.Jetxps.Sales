@@ -29,6 +29,8 @@ export class PickUpOrderCreateComponent implements OnInit {
 
   ngOnInit() {
     this.data.branchCode = this.authService.getCurrentBranch().code;
+    this.data.pickUpTime = new Date();
+    this.data.pickUpItemCount = 1;
 
     this.getProducts();
   }
@@ -53,25 +55,49 @@ export class PickUpOrderCreateComponent implements OnInit {
       }, res => {
         this.loading = false;
         let error = res.error;
-        this.toastrService.error(error.message);
+        this.toastrService.error(error.message || 'An error has occurred');
         this.errors = error.errors;
       });
   }
 
-  public loadingSearchJetId: boolean = false;
+  public loadingSearchJetID: boolean = false;
+  public validJetID: boolean = false;
 
-  searchJetId(value: string) {
-    this.loadingSearchJetId = true;
+  searchJetID(value: string) {
+    if (!value) return false;
+
+    this.loadingSearchJetID = true;
+
     this.accountService.getProfileByEmail(value)
       .then(res => {
-        this.loadingSearchJetId = false;
-        this.data.name = res.username;
-        this.data.address = res.address;
-        this.data.phoneNumber = res.phoneNumber;
-        this.data.email = res.email;
+        this.loadingSearchJetID = false;
+
+        if (res) {
+          this.validJetID = true;
+          this.data.name = res.username;
+          this.data.address = res.address;
+          this.data.phoneNumber = res.phoneNumber;
+          this.data.email = res.email;
+        }
+        else {
+          this.toastrService.error('Jet ID not found');
+        }
       }, res => {
-        this.loadingSearchJetId = false;
+        this.loadingSearchJetID = false;
+        this.validJetID = false;
         let error = res.error;
       });
+  }
+
+  removeJetID() {
+    this.validJetID = false;
+    this.data.jetIDCode = '';
+  }
+
+  onKey(event: any) {
+    if (event.key == 'Enter')
+      this.searchJetID(this.data.jetIDCode);
+
+    return false;
   }
 }

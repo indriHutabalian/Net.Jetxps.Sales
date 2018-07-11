@@ -65,19 +65,19 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
       return;
     }
 
-    data.salesCode = '';
+    // data.salesCode = '';
 
     this.loading = true;
-    this.accountService.getSalesProfileByEmail(data.salesName)
-      .then(res => {
-        data.salesCode = res.userId;
+    // this.accountService.getSalesProfileByEmail(data.salesName)
+    //   .then(res => {
+        // data.salesCode = res.userId;
 
         this.engagementRunsheetService.create(data)
           .subscribe(res => {
             this.loading = false;
             this.toastr.success(`Engagement Runsheet has been created successfully`);
 
-            this.router.navigate(['engagement-runsheets']);
+            this.router.navigate(['engagement-runsheets/list']);
 
             // print dialog
           }, res => {
@@ -86,12 +86,12 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
             this.errors = error.errors;
           });
-      })
-      .catch(res => {
-        this.loading = false;
-        let error = res.error;
-        this.toastr.error(error.message);
-      });
+      // })
+      // .catch(res => {
+      //   this.loading = false;
+      //   let error = res.error;
+      //   this.toastr.error(error.message);
+      // });
 
   }
 

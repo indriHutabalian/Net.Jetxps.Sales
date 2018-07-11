@@ -5,11 +5,17 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>JET ID</label>
+              <label>JET ID
+              </label>
               <div class="input-group">
-                <input type="text" class="form-control" name="jetIdCode" [(ngModel)]="data.jetIdCode">
+                <input type="text" class="form-control" name="jetIDCode" [(ngModel)]="data.jetIDCode" [disabled]="validJetID" autocomplete="off" (keydown.enter)="searchJetID(data.jetIDCode); $event.preventDefault()">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" (click)="searchJetId(data.jetIdCode)"><i class="fa fa-search"></i></button>
+                  <button class="btn btn-secondary" type="button" (click)="searchJetID(data.jetIDCode)" [disabled]="loadingSearchJetID" *ngIf="!validJetID">
+                    <i class="fa" [ngClass]="{ 'fa-search': !loadingSearchJetID, 'fa-spinner fa-spin': loadingSearchJetID }"></i>
+                  </button>
+                  <button class="btn btn-danger" type="button" (click)="removeJetID()" *ngIf="validJetID">
+                    <i class="fa fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -62,7 +68,6 @@
             <div class="form-group required">
               <label>Produk</label>
               <select name="productCode" class="form-control" [(ngModel)]="data.productCode" required>
-                <option value=""></option>
                 <option *ngFor="let product of products" [ngValue]="product.code">
                   {{ product.label }}
                 </option>
@@ -81,7 +86,7 @@
             <div class="form-group required" required>
               <label>Kendaraan</label>
               <select name="vehicle" class="form-control" [(ngModel)]="data.vehicle">
-                <option>MOTOR</option>
+                <option selected>MOTOR</option>
                 <option>MOBIL</option>
               </select>
             </div>
@@ -97,12 +102,10 @@
       </div>
 
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">
           Save
         </button>
       </div>
-
-      <pre>{{ data | json }}</pre>
     </div>
   </div>
 </form>
