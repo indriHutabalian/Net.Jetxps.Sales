@@ -8,6 +8,25 @@
       </span>
     </div> -->
 
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-4 col-xl-3 ml-auto">
+          <form (submit)="search()">
+            <div class="form-group m-0">
+              <div class="input-group">
+                <input type="text" class="form-control" name="keyword" [(ngModel)]="pageQuery.keyword" autocomplete="off" placeholder="Search" />
+                <span class="input-group-append">
+                  <button class="btn btn-default" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="card-body">
       <table class="table table-hover">
         <tr *ngFor="let item of pickUpOrders" (click)="openDetail(item)">
