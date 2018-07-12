@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   public loading: boolean = false;
-  public accessibleBranches: any;
+  public accessibleBranches: Branch[] = [];
   public selectedBranch: Branch;
 
   public user: any = {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(user)
       .then(res => {
         let promises = [];
-        
+
         promises.push(this.authService.getAccessBranches());
         promises.push(this.authService.getProfile());
         promises.push(this.authService.getAccessRoles());
@@ -49,6 +49,13 @@ export class LoginComponent implements OnInit {
 
             this.accessibleBranches = responses[0].filter(t => !t.isMitra);
             this.selectedBranch = this.accessibleBranches[0];
+
+            if (!this.selectedBranch) {
+              this.toastrService.error('Unauthorized');
+              this.authService.logout();
+              this.accessibleBranches = [];
+              return;
+            }
 
             if (this.accessibleBranches.length == 1)
               this.selectCurrentBranch(this.accessibleBranches[0]);

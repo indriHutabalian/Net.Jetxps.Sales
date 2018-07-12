@@ -11,7 +11,7 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
 
-                <div *ngIf="!accessibleBranches">
+                <div *ngIf="accessibleBranches.length == 0">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -40,7 +40,7 @@
                   </div>
                 </div>
 
-                <div *ngIf="accessibleBranches">
+                <div *ngIf="accessibleBranches.length > 0">
                   <div class="input-group">
                     <select name="branch" class="custom-select" [(ngModel)]="selectedBranch">
                       <option *ngFor="let branch of accessibleBranches" [ngValue]="branch">{{ branch.label }}</option>
