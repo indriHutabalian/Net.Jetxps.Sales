@@ -57,10 +57,15 @@
             </div>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-6 col-sm-4 col-md-2">
             <div class="form-group required">
               <label>Waktu Pick Up</label>
               <input type="text" class="form-control" name="pickUpTime" [(ngModel)]="data.pickUpTime" bsDatepicker required/>
+            </div>
+          </div>
+          <div class="col-6 col-sm-8 col-md-2">
+            <div class="form-group">
+              <timepicker [showMeridian]="false" name="time" [(ngModel)]="time"></timepicker>
             </div>
           </div>
 
@@ -75,17 +80,17 @@
             </div>
           </div>
 
-          <div class="col-md-3">
-            <div class="form-group required" required>
+          <div class="col-md-2">
+            <div class="form-group required">
               <label>Jumlah Barang</label>
-              <input type="number" class="form-control" [(ngModel)]="data.pickUpItemCount" name="pickUpItemCount" min="1" />
+              <input type="number" class="form-control" [(ngModel)]="data.pickUpItemCount" name="pickUpItemCount" min="1" required/>
             </div>
           </div>
 
           <div class="col-md-3">
-            <div class="form-group required" required>
+            <div class="form-group required">
               <label>Kendaraan</label>
-              <select name="vehicle" class="form-control" [(ngModel)]="data.vehicle">
+              <select name="vehicle" class="form-control" [(ngModel)]="data.vehicle" required>
                 <option selected>MOTOR</option>
                 <option>MOBIL</option>
               </select>
@@ -93,9 +98,9 @@
           </div>
 
           <div class="col-md-12">
-            <div class="form-group" required>
+            <div class="form-group">
               <label>Catatan</label>
-              <textarea name="description" class="form-control" [(ngModel)]="data.description" required></textarea>
+              <textarea name="description" class="form-control" [(ngModel)]="data.description"></textarea>
             </div>
           </div>
         </div>

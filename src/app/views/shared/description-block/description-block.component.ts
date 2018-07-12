@@ -8,7 +8,7 @@ import * as moment from 'moment';
 })
 export class DescriptionBlockComponent implements OnInit {
   @Input() label: string;
-  @Input() value: string;
+  @Input() value: string | Date;
   @Input() type: string | 'date' | 'datetime';
 
   constructor() { }
@@ -19,7 +19,7 @@ export class DescriptionBlockComponent implements OnInit {
         this.value = moment(this.value).format('DD MMM YYYY');
       }
       case 'datetime': {
-        this.value = moment(this.value).format('DD MMM YYYY HH:mm');
+        this.value = moment(this.value).locale('id-ID').format('DD MMM YYYY - HH:mm');
       }
     }
   }

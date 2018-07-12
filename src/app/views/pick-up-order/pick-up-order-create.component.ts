@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PickUpOrderService, AuthService, ProductService, AccountService } from '../../services';
 import { PickUpOrder, Product } from '../../models';
 import { ToastrService } from 'ngx-toastr';
@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./pick-up-order-create.component.scss']
 })
 export class PickUpOrderCreateComponent implements OnInit {
-
-
   constructor(
     private authService: AuthService,
     private accountService: AccountService,
@@ -27,10 +25,13 @@ export class PickUpOrderCreateComponent implements OnInit {
   public loading: boolean = false;
   public data: PickUpOrder = new PickUpOrder();
 
+  public time: Date;
+
   ngOnInit() {
     this.data.branchCode = this.authService.getCurrentBranch().code;
     this.data.pickUpTime = new Date();
     this.data.pickUpItemCount = 1;
+    this.time = new Date();
 
     this.getProducts();
   }
@@ -47,6 +48,8 @@ export class PickUpOrderCreateComponent implements OnInit {
 
     this.loading = true;
 
+    this.data.pickUpTime = new Date(this.data.pickUpTime.setHours(this.time.getHours(), this.time.getMinutes(), 0, 0));
+    
     this.pickUpOrderService.create(data)
       .subscribe(res => {
         this.loading = false;

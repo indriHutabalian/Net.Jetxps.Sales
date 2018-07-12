@@ -27,13 +27,11 @@ export class ReportSalesJetIdComponent implements OnInit {
         this.downloadFile(res);
       }, res => {
         this.loading = false;
-        debugger
       });
 
   }
 
   downloadFile(res: any) {
-    debugger
     let blob = new Blob([res], { type: '' });
     let url = window.URL.createObjectURL(blob);
     window.open(url);

@@ -8,7 +8,8 @@ import {
   ModalModule,
   BsDropdownModule,
   AlertModule,
-  TabsModule
+  TabsModule,
+  TimepickerModule
 } from 'ngx-bootstrap';
 
 import { CardLoaderComponent } from './card-loader/card-loader.component';
@@ -22,6 +23,7 @@ import { DescriptionBlockComponent } from './description-block/description-block
     HttpClientModule,
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
@@ -40,6 +42,7 @@ import { DescriptionBlockComponent } from './description-block/description-block
     HttpClientModule,
     BsDropdownModule,
     BsDatepickerModule,
+    TimepickerModule,
     PaginationModule,
     ModalModule,
     AlertModule,
