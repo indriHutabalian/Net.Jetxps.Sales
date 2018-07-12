@@ -1,4 +1,5 @@
 <form #form="ngForm" (submit)="save(data)">
+  <card-loader *ngIf="loading"></card-loader>
   <div class="modal-header">
     <h4 class="modal-title pull-left">
       {{ data.id ? 'Update' : 'Add' }}

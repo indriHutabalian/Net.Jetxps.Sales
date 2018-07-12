@@ -26,6 +26,8 @@ export class ProspectClientsUpsertComponent implements OnInit {
 
   public errors;
 
+  public loading: boolean = false;
+
   ngOnInit() {
     if (this.code)
       this.prospectClientService.get(this.code)
@@ -45,11 +47,15 @@ export class ProspectClientsUpsertComponent implements OnInit {
       this.prospectClientService.update(data.code, data)
       : this.prospectClientService.create(data);
 
+    this.loading = true;
+
     save$.subscribe(res => {
+      this.loading = false;
       this.toastrService.success(`Success`);
       this.bsModalService.setDismissReason('reload');
       this.close();
     }, res => {
+      this.loading = false;
       let error = res.error;
 
       this.errors = error.errors;
