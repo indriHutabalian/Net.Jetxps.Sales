@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
           .then(responses => {
 
             this.loading = false;
-            this.accessibleBranches = responses[0];
+
+            this.accessibleBranches = responses[0].filter(t => !t.isMitra);
             this.selectedBranch = this.accessibleBranches[0];
 
             if (this.accessibleBranches.length == 1)

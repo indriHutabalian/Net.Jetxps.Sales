@@ -65,7 +65,6 @@ import { EngagementRunsheetsModule } from './views/engagement-runsheets/engageme
 import { ProspectClientsModule } from './views/prospect-clients/prospect-clients.module';
 import { ReportModule } from './views/report/report.module';
 import { PickUpOrderModule } from './views/pick-up-order/pick-up-order.module';
-// import { TaskModule } from './views/task/task.module';
 
 @NgModule({
   imports: [
@@ -89,7 +88,6 @@ import { PickUpOrderModule } from './views/pick-up-order/pick-up-order.module';
     ProspectClientsModule,
     ReportModule,
     PickUpOrderModule
-    // TaskModule
   ],
   declarations: [
     AppComponent,

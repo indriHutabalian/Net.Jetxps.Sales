@@ -327,6 +327,7 @@
 .description-block {
 	display: block;
 	margin-bottom: 1rem;
+	
 	label {
 		display: block;
 		text-transform: uppercase;
@@ -337,9 +338,12 @@
 	}
 }
 
-.form-group.required label:after {
-	content: "*";
-	color: red;
+.form-group.required {
+
+	label:after {
+		content: "*";
+		color: red;
+	}
 }
 
 .loader {
@@ -358,6 +362,26 @@
 	}
 }
 
-.app-header .nav-item .nav-link > .img-avatar, .app-header .nav-item .avatar.nav-link > img {
-	height: 25px;
+.app-header {
+	.nav-item {
+		.nav-link {
+			> .img-avatar {
+				height: 25px;
+			}
+		}
+
+		.avatar.nav-link {
+			> img {
+				height: 25px;
+			}
+		}
+	}
+}
+
+:disabled {
+	cursor: not-allowed;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }

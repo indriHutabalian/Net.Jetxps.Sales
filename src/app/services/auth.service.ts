@@ -108,9 +108,10 @@ export class AuthService {
     return this.httpClient.get<Branch[]>(`${environment.apiAuthUrl}/me/access/branches`)
       .pipe(
         tap(data => {
-          this.setAccessibleBranches(data);
+          let nonMitra = data.filter(t => !t.isMitra);
+          this.setAccessibleBranches(nonMitra);
 
-          return data;
+          return nonMitra;
         })
       )
       .toPromise();

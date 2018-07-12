@@ -1,4 +1,4 @@
-<div class="animate fadeIn">
+<div class="animated fadeIn">
   <div class="card">
     <card-loader *ngIf="loading"></card-loader>
 
@@ -32,7 +32,7 @@
         No Items
       </alert>
       <table class="table table-hover">
-        <tr *ngFor="let item of pickUpOrders" (click)="openDetail(item)">
+        <tr *ngFor="let item of pickUpOrders" (click)="openDetail(item)" class="cursor-pointer">
           <td>
             <div class="row">
               <div class="col-12">

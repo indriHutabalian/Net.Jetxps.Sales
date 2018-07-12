@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ProspectClientService } from '../../services';
 import { ProspectClient } from '../../models';
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'app-prospect-clients-detail',
@@ -11,19 +12,32 @@ import { ProspectClient } from '../../models';
 export class ProspectClientsDetailComponent implements OnInit {
   constructor(
     private bsModalRef: BsModalRef,
+    private toastrService: ToastrService,
     private prospectClientService: ProspectClientService
   ) { }
 
   @Input() code: string;
   public prospectClient: ProspectClient;
+  public loading: boolean = false;
 
   ngOnInit() {
     if (!this.code)
       this.bsModalRef.hide();
 
+    this.getData(this.code);
+  }
+
+  getData(code: string) {
+    this.loading = true;
     this.prospectClientService.get(this.code)
-      .subscribe(data => {
-        this.prospectClient = data;
+      .subscribe(res => {
+        this.loading = false;
+        this.prospectClient = res;
+      }, res => {
+        this.loading = false;
+        let error = res.error;
+        this.toastrService.error(error.message);
+        this.close();
       });
   }
 
