@@ -44,7 +44,7 @@ export class ReportSalesEngagementComponent implements OnInit {
   getBranches() {
     this.branchService.getAll({ size: -1 })
       .subscribe(res => {
-        this.branches = res.result;
+        this.branches = res.result.filter(t => !t.isMitra);
       });
   }
 
