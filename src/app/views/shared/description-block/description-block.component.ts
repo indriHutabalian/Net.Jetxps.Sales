@@ -16,10 +16,10 @@ export class DescriptionBlockComponent implements OnInit {
   ngOnInit() {
     switch (this.type) {
       case 'date': {
-        this.value = moment(this.value).format('DD MMM YYYY');
+        this.value = moment(this.value).add('hour', 7).format('DD MMM YYYY');
       }
       case 'datetime': {
-        this.value = moment(this.value).locale('id-ID').format('DD MMM YYYY - HH:mm');
+        this.value = moment(this.value).add('hour', 7).format('DD MMM YYYY, HH:mm');
       }
     }
   }
