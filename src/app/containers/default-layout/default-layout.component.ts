@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { navItems } from './../../_nav';
+import { navItems } from '../../_nav';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
 import { Branch, UserProfile } from '../../models';

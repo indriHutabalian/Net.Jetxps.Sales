@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ProspectClientService } from '../../services';
 import { ProspectClient } from '../../models';
-import { ToastrService } from '../../../../node_modules/ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prospect-clients-detail',

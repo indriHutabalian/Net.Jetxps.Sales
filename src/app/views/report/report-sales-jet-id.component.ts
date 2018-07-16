@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../../services';
 import { saveAs } from "file-saver";
-import { ToastrService } from '../../../../node_modules/ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 
 @Component({
