@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../../services';
+import { saveAs } from "file-saver";
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-report-sales-jet-id',
@@ -9,7 +12,8 @@ import { ReportService } from '../../services';
 export class ReportSalesJetIdComponent implements OnInit {
 
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private toastrService: ToastrService
   ) { }
 
   public loading: boolean = false;
@@ -21,20 +25,17 @@ export class ReportSalesJetIdComponent implements OnInit {
 
   exportSalesJetIdReport(dateRange: Date[]) {
     this.loading = true;
+
     this.reportService.exportSalesJetIdReport(dateRange[0], dateRange[1])
-      .subscribe(res => {
+      .then(res => {
         this.loading = false;
-        this.downloadFile(res);
+        let blob = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        saveAs(blob, `SalesJetIdReport:${moment(dateRange[0]).format('MM/DD/YYYY')}-${moment(dateRange[1]).format('MM/DD/YYYY')}`);
       }, res => {
         this.loading = false;
+        let error = res.error;
+
+        this.toastrService.error(error.message);
       });
-
   }
-
-  downloadFile(res: any) {
-    let blob = new Blob([res], { type: '' });
-    let url = window.URL.createObjectURL(blob);
-    window.open(url);
-  }
-
 }

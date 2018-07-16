@@ -4,7 +4,6 @@ import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 import { VMReportSRS, ApiResponseQuery, EngagementRunsheetItem } from '../models';
 import { Observable } from 'rxjs';
-import { isProceduralRenderer } from '@angular/core/src/render3/interfaces/renderer';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,14 @@ export class ReportService {
   exportSalesJetIdReport(startDate: Date, endDate: Date) {
     let startDateString = moment(startDate).format('MM/DD/YYYY');
     let endDateString = moment(endDate).format('MM/DD/YYYY');
-    return this.httpClient.post(`${environment.apiUrl}/v1/sales/reports/sales-jet-id?startDate=${startDateString}&endDate=${endDateString}`, {});
+
+    return this.httpClient.post(`${environment.apiUrl}/v1/sales/reports/sales-jet-id?startDate=${startDateString}&endDate=${endDateString}`
+      , {
+
+      }
+      , {
+        responseType: "arraybuffer"
+      }).toPromise();
   }
 
   getSalesEngagementSummary(filter): Observable<ApiResponseQuery<VMReportSRS>> {
