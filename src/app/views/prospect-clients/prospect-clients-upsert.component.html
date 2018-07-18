@@ -2,7 +2,7 @@
   <card-loader *ngIf="loading"></card-loader>
   <div class="modal-header">
     <h4 class="modal-title pull-left">
-      {{ data.id ? 'Update' : 'Add' }}
+      {{ data.id ? 'Update ' + data.code : 'Add' }}
     </h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
@@ -10,13 +10,13 @@
   </div>
   <div class="modal-body">
     <div class="row">
-      <div class="col-12">
+      <!-- <div class="col-12">
         <div class="form-group required">
           <label>Code</label>
           <input type="text" name="code" class="form-control" [(ngModel)]="data.code" [disabled]="data.id" required />
           <span class="help-block">{{ getErrorValue('code') }}</span>
         </div>
-      </div>
+      </div> -->
       <div class="col-12">
         <div class="form-group required">
           <label>Name</label>
