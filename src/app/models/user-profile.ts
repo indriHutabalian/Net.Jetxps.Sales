@@ -1,4 +1,5 @@
 export class UserProfile {
+    userId: string;
     username: string;
     fullname: string;
     dateOfBirth: Date;

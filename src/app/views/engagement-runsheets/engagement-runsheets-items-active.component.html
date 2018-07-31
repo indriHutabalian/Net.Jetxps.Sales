@@ -9,7 +9,7 @@
 
       <table class="table table-hover" *ngIf="items.length > 0">
         <tbody>
-          <tr *ngFor="let item of items">
+          <tr *ngFor="let item of items" class="cursor-pointer">
             <td (click)="openRealization(item)">
               <span class="badge badge-dark pull-right">
                 {{ item.engagementRunsheetCode.substring(0, 3) }}

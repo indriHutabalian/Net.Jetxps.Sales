@@ -10,7 +10,8 @@ import {
   PageQuery,
   EngagementRunsheetItem,
   ProspectClient,
-  Branch
+  Branch,
+  UserProfile
 } from '../../models';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +28,7 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
     private bsModalService: BsModalService,
     private toastr: ToastrService,
     private router: Router,
-    private accountService: AccountService,
+    // private accountService: AccountService,
     private authService: AuthService,
     private engagementRunsheetService: EngagementRunsheetService,
     private prospectClientService: ProspectClientService
@@ -35,6 +36,7 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
 
   private bsModalRef: BsModalRef;
   private currentBranch: Branch = this.authService.getCurrentBranch();
+  private currentUserProfile: UserProfile = this.authService.getCurrentUserProfile();
 
   public loadingGetProfile: boolean = false;
   public data: EngagementRunsheet = new EngagementRunsheet();
@@ -42,6 +44,11 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   loading: any;
 
   ngOnInit() {
+    this.data.branchCode = this.currentBranch.code;
+    this.data.branchName = this.currentBranch.name;
+    this.data.salesCode = this.currentUserProfile.userId;
+    this.data.salesName = this.currentUserProfile.email;
+
     this.bsModalService.onHide
       .subscribe(response => {
         if (response != null && typeof response == "object") {
@@ -56,9 +63,6 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
   save(data: EngagementRunsheet) {
     this.errors = [];
 
-    data.branchCode = this.currentBranch.code;
-    data.branchName = this.currentBranch.name;
-
     if (data.engagementRunsheetItems.length == 0) {
       this.toastr.error(`There are no selected clients`);
 
@@ -68,31 +72,21 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
     // data.salesCode = '';
 
     this.loading = true;
-    // this.accountService.getSalesProfileByEmail(data.salesName)
-    //   .then(res => {
-        // data.salesCode = res.userId;
 
-        this.engagementRunsheetService.create(data)
-          .subscribe(res => {
-            this.loading = false;
-            this.toastr.success(`Engagement Runsheet has been created successfully`);
+    this.engagementRunsheetService.create(data)
+      .subscribe(res => {
+        this.loading = false;
+        this.toastr.success(`Engagement Runsheet has been created successfully`);
 
-            this.router.navigate(['engagement-runsheets/list']);
+        this.router.navigate(['engagement-runsheets/list']);
 
-            // print dialog
-          }, res => {
-            this.loading = false;
-            let error = res.error;
+        // print dialog
+      }, res => {
+        this.loading = false;
+        let error = res.error;
 
-            this.errors = error.errors;
-          });
-      // })
-      // .catch(res => {
-      //   this.loading = false;
-      //   let error = res.error;
-      //   this.toastr.error(error.message);
-      // });
-
+        this.errors = error.errors;
+      });
   }
 
   getErrorValue(propName: string) {
@@ -106,20 +100,20 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(ProspectClientsSearchModalComponent, { class: 'modal-lg' });
   }
 
-  getProfile(email: string) {
-    this.data.salesCode = '';
+  // getProfile(email: string) {
+  //   this.data.salesCode = '';
 
-    this.loadingGetProfile = true;
-    this.accountService.getProfileByEmail(email)
-      .then(res => {
-        this.loadingGetProfile = false;
-        this.data.salesCode = res.userId;
-        this.data.salesName = res.email;
-      })
-      .catch(err => {
-        this.loadingGetProfile = false;
-      });
-  }
+  //   this.loadingGetProfile = true;
+  //   this.accountService.getProfileByEmail(email)
+  //     .then(res => {
+  //       this.loadingGetProfile = false;
+  //       this.data.salesCode = res.userId;
+  //       this.data.salesName = res.email;
+  //     })
+  //     .catch(err => {
+  //       this.loadingGetProfile = false;
+  //     });
+  // }
 
   removeItem(item) {
     this.data.engagementRunsheetItems = this.data.engagementRunsheetItems.filter(t => t.prospectClientCode !== item.prospectClientCode);
