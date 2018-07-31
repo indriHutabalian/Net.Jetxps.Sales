@@ -1,11 +1,14 @@
 ## Change Logs
 ### Changed
-- Active Task - Add class 'cursor-pointer'
-- Add property 'userId' at 'user-profile'
 - Upsert ProspectClient - Remove required constraint for e-mail.
 - Create ERS - Assigned sales will be filled with currently logged in user.
+
+### Added
+- Add property 'userId' at 'user-profile'
 - POE - Button link for download MOM template. Template will be downloaded from /assets/documents folder.
 
+### Fixed
+- Active Task - Add class 'cursor-pointer'
 
 ## Additional Third Parties
 
