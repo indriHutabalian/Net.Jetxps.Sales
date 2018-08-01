@@ -1,13 +1,15 @@
 ## Change Logs
-### Changed
+
+### 31 July 2018
+##### Changed
 - Upsert ProspectClient - Remove required constraint for e-mail.
 - Create ERS - Assigned sales will be filled with currently logged in user.
 
-### Added
+##### Added
 - Add property 'userId' at 'user-profile'
 - POE - Button link for download MOM template. Template will be downloaded from /assets/documents folder.
 
-### Fixed
+##### Fixed
 - Active Task - Add class 'cursor-pointer'
 
 ## Additional Third Parties
