@@ -72,7 +72,6 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
     // data.salesCode = '';
 
     this.loading = true;
-
     this.engagementRunsheetService.create(data)
       .subscribe(res => {
         this.loading = false;
@@ -86,6 +85,8 @@ export class EngagementRunsheetsCreateComponent implements OnInit {
         let error = res.error;
 
         this.errors = error.errors;
+
+        console.log(this.errors);
       });
   }
 
