@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn" *ngIf="items.length <= 0">
   <form (submit)="search()">
     <div class="row">
       <div class="col-md-6 col-lg-4">
@@ -35,17 +35,19 @@
       </div>
     </div>
   </form>
+</div>
 
-  <div class="row" *ngIf="items.length > 0">
+<div class="animated fadeIn" *ngIf="items.length > 0">
+  <div class="row">
     <div class="col">
       <div class="card">
         <div class="card-header">
-          {{ months[selectedMonth] }} {{ selectedYear }}
+          <a href="javascript:;" class="btn btn-default btn-sm" (click)="items = []">
+            <i class="fa fa-angle-left fa-2x"></i>
+          </a>&nbsp;&nbsp; {{ months[selectedMonth] }} {{ selectedYear }}
 
           <div class="pull-right">
-            <button type="button" class="btn btn-success btn-sm" href="javascript:;"
-              (click)="exportRevenueJetIds(selectedMonth, selectedYear)"
-              [disabled]="loadingExport">
+            <button type="button" class="btn btn-success btn-sm" href="javascript:;" (click)="exportRevenueJetIds(selectedMonth, selectedYear)" [disabled]="loadingExport">
               Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
             </button>
           </div>
@@ -64,7 +66,7 @@
             <tr *ngFor="let item of items" (click)="openModalAccounts(template, accountPageQuery, selectedMonth, selectedYear, item)">
               <td>
                 <b>{{ item.username }}</b><br/>
-                <span class="text-muted">{{ item.fullname }}</span>
+                <span class="text-muted">{{ item.fullName }}</span>
               </td>
               <td>{{ item.managedBy || '-' }}</td>
               <td class="text-center">{{ item.type || '-' }}</td>

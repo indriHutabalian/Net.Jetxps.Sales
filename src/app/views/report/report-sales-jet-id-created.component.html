@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn" *ngIf="items.length <= 0">
 
   <form (submit)="search()">
     <div class="row">
@@ -36,19 +36,20 @@
       </div>
     </div>
   </form>
-
-  <div class="row" *ngIf="items.length > 0">
+</div>
+<div class="animated fadeIn" *ngIf="items.length > 0">
+  <div class="row">
 
     <div class="col-12 col-md-8 col-xl-6">
 
       <div class="card">
         <div class="card-header">
-          {{ months[selectedMonth] }} {{ selectedYear }}
+          <a href="javascript:;" class="btn btn-default btn-sm" (click)="items = []">
+            <i class="fa fa-angle-left fa-2x"></i>
+          </a>&nbsp;&nbsp; {{ months[selectedMonth] }} {{ selectedYear }}
 
           <div class="pull-right">
-            <button type="button" class="btn btn-success btn-sm" href="javascript:;"
-              (click)="exportSalesJetIdCreatedReport(selectedMonth, selectedYear)"
-              [disabled]="loadingExport">
+            <button type="button" class="btn btn-success btn-sm" href="javascript:;" (click)="exportSalesJetIdCreatedReport(selectedMonth, selectedYear)" [disabled]="loadingExport">
               Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
             </button>
           </div>
