@@ -21,7 +21,7 @@ export class AccountService {
       .toPromise();
   }
 
-  public getSalesProfileByEmail(username: string) {
+  public getSalesProfileByEmail(username: string): Promise<Account> {
     return this.httpClient.get<Account>(`${environment.apiUrl}/v1/accounts/profile/sales?username=${username}`)
       .toPromise();
   }

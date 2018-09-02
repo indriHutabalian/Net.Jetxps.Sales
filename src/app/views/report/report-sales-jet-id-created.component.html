@@ -1,0 +1,116 @@
+<div class="animated fadeIn">
+
+  <form (submit)="search()">
+    <div class="row">
+      <div class="col-md-8 col-xl-4">
+        <div class="card">
+          <div class="card-body">
+            <card-loader *ngIf="loading"></card-loader>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Month</label>
+                  <select class="form-control" name="selectedMonth" [(ngModel)]="selectedMonth">
+                    <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Year</label>
+                  <select class="form-control" name="selectedYear" [(ngModel)]="selectedYear">
+                    <option *ngFor="let year of years">{{ year }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row" *ngIf="items.length > 0">
+
+    <div class="col-12 col-md-8 col-xl-6">
+
+      <div class="card">
+        <div class="card-header">
+          {{ months[selectedMonth] }} {{ selectedYear }}
+
+          <div class="pull-right">
+            <button type="button" class="btn btn-success btn-sm" href="javascript:;"
+              (click)="exportSalesJetIdCreatedReport(selectedMonth, selectedYear)"
+              [disabled]="loadingExport">
+              Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <card-loader *ngIf="loading"></card-loader>
+
+          <table class="table table-hover">
+            <tr>
+              <th>Sales</th>
+              <th class="text-center">Branch</th>
+              <th class="text-center">Total</th>
+            </tr>
+            <tr *ngFor="let item of items" (click)="openModalAccounts(template, accountPageQuery, selectedMonth, selectedYear, item)">
+              <td>{{ item.managedBy }}</td>
+              <td class="text-center">{{ item.branchCode || '-' }}</td>
+              <td class="text-center">{{ item.total }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
+          <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [(ngModel)]="pageQuery.page" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <card-loader *ngIf="loadingAccount"></card-loader>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Jet ID Created</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <dl class="row">
+      <dt class="col-3">Sales</dt>
+      <dd class="col-9">: {{ selectedSales }}</dd>
+
+      <dt class="col-3">Branch</dt>
+      <dd class="col-9">: {{ selectedBranch || '-' }}</dd>
+
+      <dt class="col-3">Period</dt>
+      <dd class="col-9">: {{ months[selectedMonth] }} {{ selectedYear }}</dd>
+    </dl>
+    <table class="table">
+      <tr>
+        <th>Jet Id</th>
+        <th class="text-center">Discount</th>
+      </tr>
+      <tr *ngFor="let account of accounts">
+        <td>
+          <b>{{ account.username }}</b><br/>
+          <span class="text-muted">{{ account.fullname }}</span>
+        </td>
+        <td class="text-center">{{ account.discount }}%</td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer" *ngIf="accountPageQuery.totalPage > 1">
+    <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [(ngModel)]="accountPageQuery.page" [totalItems]="accountPageQuery.count" [itemsPerPage]="accountPageQuery.size" (pageChanged)="accountPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+  </div>
+</ng-template>

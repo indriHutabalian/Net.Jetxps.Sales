@@ -20,6 +20,7 @@ export class ReportSalesJetIdComponent implements OnInit {
   public dateRange: Date[] = [];
 
   ngOnInit() {
+    
     this.dateRange[0] = this.dateRange[1] = new Date();
   }
 

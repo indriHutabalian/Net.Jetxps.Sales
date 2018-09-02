@@ -13,4 +13,6 @@ export * from './engagement-status';
 export * from './vm-report-srs';
 export * from './pick-up-order';
 export * from './product';
+export * from './vm-report-total-jet-id';
+export * from './vm-report-jet-id-revenue';
 //endregion

@@ -1,5 +1,14 @@
 ## Change Logs
 
+### 27 August 2018 - 01 September 2018
+#### Added
+- Report - Engaged Jet Id
+- Report - Jet Id Revenue
+
+#### Changed
+- POE - MoM is not required for SellingType "Outlet".
+
+
 ### 31 July 2018
 ##### Changed
 - Upsert ProspectClient - Remove required constraint for e-mail.

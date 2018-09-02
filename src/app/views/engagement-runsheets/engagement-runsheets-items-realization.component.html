@@ -146,7 +146,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6" *ngIf="!isSellingTypeOutlet">
                     <div class="form-group required">
                       <label>
                         MOM
@@ -154,7 +154,7 @@
                       <a class="pull-right btn btn-sm btn-link" href="/assets/documents/Template MOM ( Minutes Of Meeting ).doc" target="_blank">
                         <i class="fa fa-download"></i> Download Template
                       </a>
-                      <input type="file" class="form-control" name="mom" (change)="convertMomToBase64($event)" required #fileMom />
+                      <input type="file" class="form-control" name="mom" (change)="convertMomToBase64($event)" [required]="!isSellingTypeOutlet" #fileMom />
                       <small class="help-block text-muted">
                         Maximum size {{ fileSizeLimit / 1024 }} KBs
                       </small>

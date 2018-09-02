@@ -65,4 +65,14 @@ export const navItems = [
     url: '/report/sales-engagement',
     icon: 'icon-doc'
   },
+  {
+    name: 'Sales JET ID Created',
+    url: '/report/sales-jet-id-created',
+    icon: 'icon-doc'
+  },
+  {
+    name: 'JET ID Revenue',
+    url: '/report/jet-id-revenue',
+    icon: 'icon-doc'
+  },
 ];

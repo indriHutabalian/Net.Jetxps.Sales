@@ -1,0 +1,82 @@
+<div class="animated fadeIn">
+  <form (submit)="search()">
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <card-loader *ngIf="loading"></card-loader>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Month</label>
+                  <select class="form-control" name="selectedMonth" [(ngModel)]="selectedMonth">
+                    <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Year</label>
+                  <select class="form-control" name="selectedYear" [(ngModel)]="selectedYear">
+                    <option *ngFor="let year of years">{{ year }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row" *ngIf="items.length > 0">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          {{ months[selectedMonth] }} {{ selectedYear }}
+
+          <div class="pull-right">
+            <button type="button" class="btn btn-success btn-sm" href="javascript:;"
+              (click)="exportRevenueJetIds(selectedMonth, selectedYear)"
+              [disabled]="loadingExport">
+              Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <card-loader *ngIf="loading"></card-loader>
+
+          <table class="table table-hover">
+            <tr>
+              <th>Jet Id</th>
+              <th>Sales</th>
+              <th class="text-center">Type</th>
+              <th class="text-center">Discount</th>
+              <th class="text-right">Revenue</th>
+            </tr>
+            <tr *ngFor="let item of items" (click)="openModalAccounts(template, accountPageQuery, selectedMonth, selectedYear, item)">
+              <td>
+                <b>{{ item.username }}</b><br/>
+                <span class="text-muted">{{ item.fullname }}</span>
+              </td>
+              <td>{{ item.managedBy || '-' }}</td>
+              <td class="text-center">{{ item.type || '-' }}</td>
+              <td class="text-center">{{ item.discount || 0 | number }}%</td>
+              <td class="text-right">{{ item.revenue | currency: 'IDR ' }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer" *ngIf="pageQuery.totalPage > 1">
+          <pagination class="pull-right" [maxSize]="5" [boundaryLinks]="true" [(ngModel)]="pageQuery.page" [totalItems]="pageQuery.count" [itemsPerPage]="pageQuery.size" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

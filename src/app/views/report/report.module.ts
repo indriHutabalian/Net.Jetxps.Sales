@@ -6,6 +6,8 @@ import { ReportSalesEngagementComponent } from './report-sales-engagement.compon
 import { ReportSalesJetIdComponent } from './report-sales-jet-id.component';
 import { ReportSalesEngagementDetailModalComponent } from './report-sales-engagement-detail-modal.component';
 import { EngagementRunsheetsModule } from '../engagement-runsheets/engagement-runsheets.module';
+import { ReportSalesJetIdCreatedComponent } from './report-sales-jet-id-created.component';
+import { ReportJetIdRevenueComponent } from './report-jet-id-revenue.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { EngagementRunsheetsModule } from '../engagement-runsheets/engagement-ru
   declarations: [
     ReportSalesJetIdComponent,
     ReportSalesEngagementComponent,
-    ReportSalesEngagementDetailModalComponent
+    ReportSalesEngagementDetailModalComponent,
+    ReportSalesJetIdCreatedComponent,
+    ReportJetIdRevenueComponent
   ],
   entryComponents: [
     ReportSalesEngagementDetailModalComponent
