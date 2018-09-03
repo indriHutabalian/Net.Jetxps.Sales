@@ -6,7 +6,7 @@
 - Report - Jet Id Revenue
 
 #### Changed
-- POE - MoM is not required for SellingType "Outlet".
+- POE - MoM is not mandatory for SellingType "Outlet".
 
 
 ### 31 July 2018
