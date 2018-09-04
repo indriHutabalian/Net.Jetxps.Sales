@@ -28,6 +28,8 @@ const routes: Routes = [
     data: {
       title: 'Sales Created JET ID Report',
       expectedRoles: [
+        'administrator',
+        'SysAdministrator',
         'Sales Admin'
       ]
     }
@@ -39,6 +41,8 @@ const routes: Routes = [
     data: {
       title: 'Sales JET ID Revenue',
       expectedRoles: [
+        'administrator',
+        'SysAdministrator',
         'Sales Admin'
       ]
     }

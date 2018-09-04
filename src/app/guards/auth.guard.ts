@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     if (!this.authService.isAuthenticated()) {
-      this.toastrService.error(`Your session has ended. Please re-login.`);
       this.router.navigate(['/login']);
       return false;
     }

@@ -17,6 +17,7 @@ export class DefaultLayoutComponent {
   public accessBranches: Branch[] = [];
   public currentUser: UserProfile;
   public currentBranch: Branch;
+  public currentAccessRoles: string[] = [];
 
   constructor(
     private authService: AuthService,
@@ -34,6 +35,28 @@ export class DefaultLayoutComponent {
     this.accessBranches = this.authService.getAccessibleBranches();
     this.currentUser = this.authService.getCurrentUserProfile();
     this.currentBranch = this.authService.getCurrentBranch();
+    this.currentAccessRoles = this.authService.getCurrentAccessRoles();
+
+    // intercept navItems
+    let accessibleNavItems = [];
+
+    this.navItems.forEach(item => {
+      // available for all
+      if (!item.expectedRoles) {
+        accessibleNavItems.push(item);
+        return;
+      }
+
+      // based on role
+      if (item.expectedRoles.some(role => {
+        return this.currentAccessRoles.includes(role);
+      })) {
+        accessibleNavItems.push(item);
+        return;
+      }
+    });
+
+    this.navItems = accessibleNavItems;
   }
 
   public logout() {

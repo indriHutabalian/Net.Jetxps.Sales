@@ -68,11 +68,21 @@ export const navItems = [
   {
     name: 'Sales JET ID Created',
     url: '/report/sales-jet-id-created',
-    icon: 'icon-doc'
+    icon: 'icon-doc',
+    expectedRoles: [
+      'administrator',
+      'SysAdministrator',
+      'Sales Admin',
+    ]
   },
   {
     name: 'JET ID Revenue',
     url: '/report/jet-id-revenue',
-    icon: 'icon-doc'
+    icon: 'icon-doc',
+    expectedRoles: [
+      'administrator',
+      'SysAdministrator',
+      'Sales Admin'
+    ]
   },
 ];

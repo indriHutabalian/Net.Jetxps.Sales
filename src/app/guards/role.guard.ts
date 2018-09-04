@@ -19,15 +19,17 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     let expectedRoles = next.data.expectedRoles;
+    if (!expectedRoles)
+      return true;
 
     let currentAccessRoles = this.authService.getCurrentAccessRoles();
 
-    expectedRoles.map(role => {
-      if (currentAccessRoles.includes(role))
-        return true;
-    });
+    if (expectedRoles.some(role => {
+      return currentAccessRoles.includes(role);
+    })) {
+      return true;
+    }
 
-    // this.router.navigate(['']);
     this.toastrService.error(`You don't have permission to access this page`, 'Forbidden');
     return false;
   }
