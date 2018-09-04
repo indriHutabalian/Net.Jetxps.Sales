@@ -4,6 +4,7 @@ import { ReportSalesJetIdComponent } from './report-sales-jet-id.component';
 import { ReportSalesEngagementComponent } from './report-sales-engagement.component';
 import { ReportSalesJetIdCreatedComponent } from './report-sales-jet-id-created.component';
 import { ReportJetIdRevenueComponent } from './report-jet-id-revenue.component';
+import { RoleGuard } from '../../guards';
 
 const routes: Routes = [
   {
@@ -23,15 +24,23 @@ const routes: Routes = [
   {
     path: 'sales-jet-id-created',
     component: ReportSalesJetIdCreatedComponent,
+    canActivate: [RoleGuard],
     data: {
-      title: 'Sales Created JET ID Report'
+      title: 'Sales Created JET ID Report',
+      expectedRoles: [
+        'Sales Admin'
+      ]
     }
   },
   {
     path: 'jet-id-revenue',
     component: ReportJetIdRevenueComponent,
+    canActivate: [RoleGuard],
     data: {
-      title: 'Sales JET ID Revenue'
+      title: 'Sales JET ID Revenue',
+      expectedRoles: [
+        'Sales Admin'
+      ]
     }
   }
 ];
