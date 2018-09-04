@@ -4,6 +4,11 @@
 #### Added
 - ACL
 
+#### Changed
+- Account + CreatedDate
+- Filter all months in Jet Id Revenue Report, Report Sales Jet Id Created
+- Report Sales Jet Id Created + Created Date
+
 ### 27 August 2018 - 01 September 2018
 #### Added
 - Report - Engaged Jet Id

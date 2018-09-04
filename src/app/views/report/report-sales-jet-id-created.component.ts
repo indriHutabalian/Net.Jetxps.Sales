@@ -49,7 +49,7 @@ export class ReportSalesJetIdCreatedComponent implements OnInit {
     }
 
     this.pageQuery.orderBy = 'Username';
-    this.accountPageQuery.orderBy = 'Username';
+    this.accountPageQuery.orderBy = 'CreatedDate';
   }
 
   getTotalManagedJetIds(pageQuery: PageQuery, month: number, year: number) {
@@ -128,8 +128,8 @@ export class ReportSalesJetIdCreatedComponent implements OnInit {
 
   getDateRange(month: number, year: number): any[] {
     return [
-      moment().set({ date: 1, month: month, year: year, hour: 0, minute: 0, second: 0, millisecond: 0 }),
-      moment().set({ date: 1, month: month, year: year, hour: 0, minute: 0, second: 0, millisecond: 0 }).add(1, 'month').add(-1, 'second')
+      moment().set({ date: 1, month: month || 0, year: year, hour: 0, minute: 0, second: 0, millisecond: 0 }),
+      moment().set({ date: 1, month: month || 11, year: year, hour: 0, minute: 0, second: 0, millisecond: 0 }).add(1, 'month').add(-1, 'second')
     ];
   }
 
@@ -137,7 +137,7 @@ export class ReportSalesJetIdCreatedComponent implements OnInit {
     this.selectedSales = item.managedBy;
     this.selectedBranch = item.branchCode;
     
-    this.bsModalRef = this.bsModalService.show(template);
+    this.bsModalRef = this.bsModalService.show(template, { class: 'modal-lg' });
 
     pageQuery.page = 1;
     this.accounts = [];

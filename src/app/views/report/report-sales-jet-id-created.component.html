@@ -12,6 +12,7 @@
                 <div class="form-group">
                   <label>Month</label>
                   <select class="form-control" name="selectedMonth" [(ngModel)]="selectedMonth">
+                    <option value="">All</option>
                     <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
                   </select>
                 </div>
@@ -88,21 +89,30 @@
   </div>
   <div class="modal-body">
     <dl class="row">
-      <dt class="col-3">Sales</dt>
-      <dd class="col-9">: {{ selectedSales }}</dd>
+      <dt class="col-3 col-sm-2">Sales</dt>
+      <dd class="col-9 col-sm-10">: {{ selectedSales }}</dd>
 
-      <dt class="col-3">Branch</dt>
-      <dd class="col-9">: {{ selectedBranch || '-' }}</dd>
+      <dt class="col-3 col-sm-2">Branch</dt>
+      <dd class="col-9 col-sm-10">: {{ selectedBranch || '-' }}</dd>
 
-      <dt class="col-3">Period</dt>
-      <dd class="col-9">: {{ months[selectedMonth] }} {{ selectedYear }}</dd>
+      <dt class="col-3 col-sm-2">Period</dt>
+      <dd class="col-9 col-sm-10">: {{ months[selectedMonth] }} {{ selectedYear }}</dd>
     </dl>
     <table class="table">
+      <colgroup>
+        <col style="width: 150px;"/>
+        <col/>
+        <col style="width: 100px;"/>
+      </colgroup>
       <tr>
+        <th class="text-center">Join Date</th>
         <th>Jet Id</th>
         <th class="text-center">Discount</th>
       </tr>
       <tr *ngFor="let account of accounts">
+        <td class="text-center">
+          {{ account.createdDate | date: 'd MMM yyyy' }}
+        </td>
         <td>
           <b>{{ account.username }}</b><br/>
           <span class="text-muted">{{ account.fullname }}</span>

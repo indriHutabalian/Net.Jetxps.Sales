@@ -11,6 +11,7 @@ export class Account {
     paymentMethod: string;
     paymentMethodName: string;
     wallet: Wallet;
+    createdDate: Date;
 }
 
 export class Wallet {
