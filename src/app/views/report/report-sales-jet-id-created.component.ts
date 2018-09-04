@@ -79,7 +79,7 @@ export class ReportSalesJetIdCreatedComponent implements OnInit {
   search() {
     this.pageQuery.page = 1;
 
-    this.items = [];
+    // this.items = [];
 
     this.getTotalManagedJetIds(this.pageQuery, this.selectedMonth, this.selectedYear);
   }

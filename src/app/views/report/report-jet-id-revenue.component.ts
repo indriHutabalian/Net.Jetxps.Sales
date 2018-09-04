@@ -74,7 +74,7 @@ export class ReportJetIdRevenueComponent implements OnInit {
   search() {
     this.pageQuery.page = 1;
 
-    this.items = [];
+    // this.items = [];
 
     this.getItems(this.pageQuery, this.selectedMonth, this.selectedYear);
   }

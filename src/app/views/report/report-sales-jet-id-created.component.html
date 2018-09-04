@@ -40,19 +40,34 @@
 </div>
 <div class="animated fadeIn" *ngIf="items.length > 0">
   <div class="row">
-
     <div class="col-12 col-md-8 col-xl-6">
 
       <div class="card">
         <div class="card-header">
-          <a href="javascript:;" class="btn btn-default btn-sm" (click)="items = []">
-            <i class="fa fa-angle-left fa-2x"></i>
-          </a>&nbsp;&nbsp; {{ months[selectedMonth] }} {{ selectedYear }}
+          <div class="row">
+            <div class="col-md-8 col-xl-9">
+              <a href="javascript:;" class="btn btn-light" (click)="items = []">
+                &larr;&nbsp;&nbsp; {{ months[selectedMonth] }} {{ selectedYear }}
+              </a>
 
-          <div class="pull-right">
-            <button type="button" class="btn btn-success btn-sm" href="javascript:;" (click)="exportSalesJetIdCreatedReport(selectedMonth, selectedYear)" [disabled]="loadingExport">
-              Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
-            </button>
+            </div>
+            <div class="col-md-4 col-xl-3 text-right">
+              <!-- <form (submit)="search()">
+                <div class="form-group m-0">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="keyword" [(ngModel)]="pageQuery.keyword" autocomplete="off" placeholder="Search" />
+                    <span class="input-group-append">
+                      <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </form> -->
+              <button type="button" class="btn btn-success" href="javascript:;" (click)="exportSalesJetIdCreatedReport(selectedMonth, selectedYear)" [disabled]="loadingExport">
+                Download <i class="fa fa-spinner fa-spin" *ngIf="loadingExport"></i>
+              </button>
+            </div>
           </div>
         </div>
         <div class="card-body">
@@ -100,9 +115,9 @@
     </dl>
     <table class="table">
       <colgroup>
-        <col style="width: 150px;"/>
+        <col style="width: 150px;" />
         <col/>
-        <col style="width: 100px;"/>
+        <col style="width: 100px;" />
       </colgroup>
       <tr>
         <th class="text-center">Join Date</th>
