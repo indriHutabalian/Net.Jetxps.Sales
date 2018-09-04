@@ -27,8 +27,8 @@ export class RoleGuard implements CanActivate {
         return true;
     });
 
-    this.router.navigate(['/login']);
-    this.toastrService.error(`Forbidden`);
+    // this.router.navigate(['']);
+    this.toastrService.error(`You don't have permission to access this page`, 'Forbidden');
     return false;
   }
 }
